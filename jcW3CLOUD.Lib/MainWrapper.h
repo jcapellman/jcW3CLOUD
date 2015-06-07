@@ -10,6 +10,8 @@ class MainWrapper {
 
 		void Run();
 		void Quit();
+
+		void AIO();
 	private:
 		Config _config;
 		WindowHandler * _windowHandler;

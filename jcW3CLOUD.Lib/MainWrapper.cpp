@@ -22,3 +22,13 @@ bool MainWrapper::Init() {
 
 	return true;
 }
+
+void MainWrapper::AIO() {
+	if (!this->Init()) {
+		cout << "Could not initialize" << endl;
+	}
+
+	this->Run();
+
+	this->Quit();
+}
