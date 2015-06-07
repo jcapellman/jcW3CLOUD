@@ -14,24 +14,21 @@ void Config::readConfig(char * fileName) {
 		return;
 	}
 
-	for (std::string line; std::getline(iConfig, line);) {
-		string buffer;
+	while (getline(iConfig, line)) {
+		string value;
 		string key;
 
-		stringstream ss(line);
+		int positionIdx = line.find(" ");
 
-		bool onKey = true;
-		
-		while (ss >> buffer) {
-			if (!onKey) {
-				this->_mConfig[key] = buffer;
-
-				onKey = true;
-			}
-
-			key = buffer;
-			onKey = false;
+		if (positionIdx == string::npos) {
+			continue;
 		}
+
+		key = line.substr(0, positionIdx);
+		
+		value = line.substr(positionIdx, line.length() - positionIdx);
+
+		this->_mConfig[key] = value;
 	}
 
 	iConfig.close();
