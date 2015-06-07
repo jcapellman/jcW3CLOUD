@@ -44,6 +44,27 @@ int Config::GetIntConfig(string key) {
 	return atoi(value.c_str());
 }
 
+int Config::GetIntConfig(CONFIG_KEYS configKey) {
+	return GetIntConfig(enumToString(configKey));
+}
+
+string Config::enumToString(CONFIG_KEYS configKey) {
+	switch (configKey) {
+		case xres:
+			return "xres";
+		case yres:
+			return "yres";
+		case bpp:
+			return "bpp";
+	}
+
+	return "";
+}
+
+string Config::GetStringConfig(CONFIG_KEYS configKey) {
+	return GetStringConfig(enumToString(configKey));
+}
+
 string Config::GetStringConfig(string key) {
 	auto pos = this->_mConfig.find(key);
 

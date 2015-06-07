@@ -4,7 +4,7 @@ bool SDLWindowHandler::CreateWindow(int xRes, int yRes, int bpp) {
 	SDL_Init(SDL_INIT_VIDEO);
 
 	screen = SDL_SetVideoMode(xRes, yRes, bpp, SDL_HWSURFACE);
-	SDL_WM_SetCaption("jcW3CLOUD", NULL);
+	SDL_WM_SetCaption(WINDOW_TITLE, NULL);
 
 	return true;
 }
