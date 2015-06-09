@@ -56,6 +56,8 @@ string Config::enumToString(CONFIG_KEYS configKey) {
 			return "yres";
 		case bpp:
 			return "bpp";
+		case server_address:
+			return "server_address";
 	}
 
 	return "";

@@ -3,7 +3,8 @@
 enum CONFIG_KEYS {
 	xres,
 	yres,
-	bpp
+	bpp,
+	server_address
 };
 
 class Config {
