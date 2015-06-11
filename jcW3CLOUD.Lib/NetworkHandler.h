@@ -5,7 +5,7 @@
 
 class NetworkHandler {
 	public:
-		virtual vector<unsigned char> GetPage(string url) = 0;
+		virtual string GetContent(string url) = 0;
 };
 
 #endif

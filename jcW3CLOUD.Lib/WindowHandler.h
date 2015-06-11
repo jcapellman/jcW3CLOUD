@@ -2,6 +2,7 @@
 #define __WindowHandler__
 
 #include "Main.h"
+#include "ContentWidget.h"
 
 class WindowHandler {
 	public:
@@ -11,6 +12,8 @@ class WindowHandler {
 		virtual bool CreateMenu() = 0;
 
 		virtual bool EventPolling() = 0;
+
+		virtual bool AddWidget(ContentWidget &widget) = 0;
 };
 
 #endif

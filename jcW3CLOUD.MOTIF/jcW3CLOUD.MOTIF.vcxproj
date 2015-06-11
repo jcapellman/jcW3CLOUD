@@ -80,11 +80,17 @@
     <None Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ButtonWidget.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="MotifWindowHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MotifWindowHandler.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\jcW3CLOUD.Lib\jcW3CLOUD.Lib.vcxproj">
+      <Project>{b56e2826-e0db-40c0-a04a-9cc70d6098b5}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
