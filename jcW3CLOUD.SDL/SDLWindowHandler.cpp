@@ -15,6 +15,10 @@ bool SDLWindowHandler::CloseWindow() {
 	return true;
 }
 
+bool SDLWindowHandler::CreateMenu() {
+	return true;
+}
+
 bool SDLWindowHandler::EventPolling() {
 	bool quit = false;
 

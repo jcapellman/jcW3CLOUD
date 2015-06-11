@@ -20,6 +20,8 @@ bool MainWrapper::Init() {
 
 	this->_windowHandler->CreateWindow(xRes, yRes, bpp);
 
+	this->_windowHandler->CreateMenu();
+
 	return true;
 }
 
