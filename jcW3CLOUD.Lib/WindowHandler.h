@@ -1,5 +1,5 @@
-#ifndef __WindowHandler__
-#define __WindowHandler__
+#ifndef __WINDOWHANDLER__
+#define __WINDOWHANDLER__
 
 #include "Main.h"
 #include "ContentWidget.h"

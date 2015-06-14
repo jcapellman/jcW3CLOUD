@@ -3,9 +3,10 @@
 
 class BookmarkItem {
 	public:
-		BookmarkItem(string description, string url) {
+		BookmarkItem(int id, string description, string url) {
 			this->_description = description;
 			this->_url = url;
+			this->_id = id;
 		}
 
 		string GetDescription() {
@@ -18,6 +19,14 @@ class BookmarkItem {
 
 		int GetID() {
 			return this->_id;
+		}
+
+		stringstream operator << (BookmarkItem &a) {
+			stringstream tmp;
+
+			tmp << a.GetID() << DEFAULT_BOOKMARK_DELIMETER << a.GetDescription() << DEFAULT_BOOKMARK_DELIMETER << a.GetUrl() << endl;
+
+			return tmp;
 		}
 	private:
 		string _description;

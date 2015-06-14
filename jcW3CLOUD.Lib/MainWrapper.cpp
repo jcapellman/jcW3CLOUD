@@ -20,7 +20,7 @@ bool MainWrapper::Init() {
 
 	string bookmarkFilename = this->_config.GetStringConfig(CONFIG_KEYS::bookmark_filename);
 
-	if (bookmarkFilename.length == 0) {
+	if (bookmarkFilename.length() == 0) {
 		bookmarkFilename = DEFAULT_BOOKMARK_FILENAME;
 	}
 

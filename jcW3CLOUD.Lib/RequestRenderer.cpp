@@ -10,22 +10,16 @@ bool RequestRenderer::Render(string request, WindowHandler &windowHandler, Netwo
 	
 	switch (contentType) {
 		case HTML:
-			HtmlContentRenderer htmlRenderer = HtmlContentRenderer(windowHandler);
+			return HtmlContentRenderer(windowHandler).RenderContent(requestContent);
 
-			return htmlRenderer.RenderContent(requestContent);
+			break;
 		case JSON:
-			JsonContentRenderer jsonRenderer = JsonContentRenderer(windowHandler);
-
-			return jsonRenderer.RenderContent(requestContent);
+			return JsonContentRenderer(windowHandler).RenderContent(requestContent);
 		case XML:
-			XmlContentRenderer xmlRenderer = XmlContentRenderer(windowHandler);
-
-			return xmlRenderer.RenderContent(requestContent);
+			return XmlContentRenderer(windowHandler).RenderContent(requestContent);
 		case PLAIN_TEXT:
 		default:
-			PlainTextContentRenderer plainRenderer = PlainTextContentRenderer(windowHandler);
-
-			return plainRenderer.RenderContent(requestContent);
+			return PlainTextContentRenderer(windowHandler).RenderContent(requestContent);
 	}
 
 	return false;
