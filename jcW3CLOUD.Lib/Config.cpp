@@ -58,6 +58,8 @@ string Config::enumToString(CONFIG_KEYS configKey) {
 			return "bpp";
 		case server_address:
 			return "server_address";
+		case bookmark_filename:
+			return "bookmark_filename";
 	}
 
 	return "";

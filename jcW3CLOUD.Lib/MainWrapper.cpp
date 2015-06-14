@@ -18,6 +18,14 @@ bool MainWrapper::Init() {
 	int yRes = this->_config.GetIntConfig(CONFIG_KEYS::yres);
 	int bpp = this->_config.GetIntConfig(CONFIG_KEYS::bpp);
 
+	string bookmarkFilename = this->_config.GetStringConfig(CONFIG_KEYS::bookmark_filename);
+
+	if (bookmarkFilename.length == 0) {
+		bookmarkFilename = DEFAULT_BOOKMARK_FILENAME;
+	}
+
+	this->_bManager = BookmarkManager(bookmarkFilename);
+
 	this->_windowHandler->CreateWindow(xRes, yRes, bpp);
 
 	this->_windowHandler->CreateMenu();

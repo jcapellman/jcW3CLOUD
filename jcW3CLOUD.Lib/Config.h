@@ -4,7 +4,8 @@ enum CONFIG_KEYS {
 	xres,
 	yres,
 	bpp,
-	server_address
+	server_address,
+	bookmark_filename
 };
 
 class Config {

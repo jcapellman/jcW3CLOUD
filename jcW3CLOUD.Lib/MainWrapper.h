@@ -1,6 +1,7 @@
 #include "Main.h"
 #include "Config.h"
 #include "WindowHandler.h"
+#include "BookmarkManager.h"
 
 class MainWrapper {
 	public:
@@ -15,4 +16,5 @@ class MainWrapper {
 	private:
 		Config _config;
 		WindowHandler * _windowHandler;
+		BookmarkManager _bManager;
 };
