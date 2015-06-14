@@ -8,6 +8,6 @@
 using namespace std;
 
 #define DEFAULT_CONFIG_FILENAME "config.cfg"
+#define DEFAULT_BOOKMARK_FILENAME "bookmarks.cfg"
+
 #define WINDOW_TITLE "jcW3CLOUD"
-
-
