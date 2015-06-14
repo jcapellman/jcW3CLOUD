@@ -1,5 +1,7 @@
 #include "Main.h"
 
+#include "FileReader.h"
+
 enum CONFIG_KEYS {
 	xres,
 	yres,

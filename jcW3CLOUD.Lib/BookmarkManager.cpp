@@ -1,31 +1,9 @@
 #include "BookmarkManager.h"
 
 BookmarkManager::BookmarkManager(string fileName) {
-	std::ifstream iConfig(fileName, std::ifstream::in);
-	string line;
+	FileReader fr;
 
-	if (!iConfig.is_open()) {
-		return;
-	}
-
-	while (getline(iConfig, line)) {
-		string description;
-		string url;
-
-		int positionIdx = line.find("||");
-
-		if (positionIdx == string::npos) {
-			continue;
-		}
-
-		description = line.substr(0, positionIdx);
-
-		url = line.substr(positionIdx, line.length() - positionIdx);
-
-		this->AddBookmark(description, url);
-	}
-
-	iConfig.close();
+	this->_bookmarks = fr.GetVector(fileName, "||");
 }
 
 BookmarkManager::BookmarkManager() : BookmarkManager(DEFAULT_BOOKMARK_FILENAME) { }

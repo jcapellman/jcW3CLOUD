@@ -3,6 +3,7 @@
 
 #include "Main.h"
 #include "BookmarkItem.h"
+#include "FileReader.h"
 
 class BookmarkManager {
 	public:

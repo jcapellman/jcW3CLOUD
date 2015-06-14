@@ -7,31 +7,9 @@ Config::Config(char * fileName) {
 }
 
 void Config::readConfig(char * fileName) {
-	std::ifstream iConfig(fileName, std::ifstream::in);
-	string line;
+	FileReader fr;
 
-	if (!iConfig.is_open()) {
-		return;
-	}
-
-	while (getline(iConfig, line)) {
-		string value;
-		string key;
-
-		int positionIdx = line.find(" ");
-
-		if (positionIdx == string::npos) {
-			continue;
-		}
-
-		key = line.substr(0, positionIdx);
-		
-		value = line.substr(positionIdx, line.length() - positionIdx);
-
-		this->_mConfig[key] = value;
-	}
-
-	iConfig.close();
+	this->_mConfig = fr.GetMap(fileName, " ");
 }
 
 int Config::GetIntConfig(string key) {
