@@ -1,13 +1,13 @@
 #include "FileWriter.h"
 
-template<class T> bool FileWriter::WriteFile(string fileName, vector<T> data) {
-	std::ofstream oFile(fileName, std::ofstream::out);
+bool FileWriter::WriteFile(string fileName, vector<string> data) {
+	ofstream oFile(fileName);
 
-	if (!oFile.open()) {
+	if (!oFile.is_open()) {
 		return false;
 	}
 
-	for (int x = 0; x < data.size(); x++) {
+	for (unsigned int x = 0; x < data.size(); x++) {
 		oFile << data.at(x);
 	}
 

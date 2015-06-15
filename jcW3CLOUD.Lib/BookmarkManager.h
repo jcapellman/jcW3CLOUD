@@ -4,7 +4,6 @@
 #include "Main.h"
 #include "BookmarkItem.h"
 #include "FileReader.h"
-#include "FileWriter.h"
 
 class BookmarkManager {
 	public:
@@ -13,7 +12,7 @@ class BookmarkManager {
 		~BookmarkManager();
 
 		bool AddBookmark(string description, string url);
-		bool RemoveBook(int id);
+		bool RemoveBookmark(int id);
 
 		vector<BookmarkItem> GetAll();
 

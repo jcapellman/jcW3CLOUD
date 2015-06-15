@@ -4,9 +4,6 @@ vector<BookmarkItem> FileReader::GetVector(string fileName, string delimiter) {
 	std::ifstream iConfig(fileName, std::ifstream::in);
 	string line;
 	vector<BookmarkItem> tmpVector;
-	vector<BookmarkItem>::iterator it;
-
-	it = tmpVector.begin();
 
 	if (!iConfig.is_open()) {
 		return tmpVector;
@@ -15,8 +12,9 @@ vector<BookmarkItem> FileReader::GetVector(string fileName, string delimiter) {
 	while (getline(iConfig, line)) {
 		string description;
 		string url;
+		int id;
 
-		int positionIdx = line.find("||");
+		int positionIdx = line.find(delimiter);
 
 		if (positionIdx == string::npos) {
 			continue;
@@ -24,9 +22,19 @@ vector<BookmarkItem> FileReader::GetVector(string fileName, string delimiter) {
 
 		description = line.substr(0, positionIdx);
 
+		line = line.substr(positionIdx, line.length() - positionIdx);
+
+		positionIdx = line.find(delimiter);
+
 		url = line.substr(positionIdx, line.length() - positionIdx);
 
-		tmpVector.insert(it, description, url);
+		line = line.substr(positionIdx, line.length() - positionIdx);
+
+		id = atoi(line.c_str());
+
+		BookmarkItem item(id, description, url);
+
+		tmpVector.push_back(item);
 	}
 
 	iConfig.close();

@@ -130,3 +130,12 @@
 /jcW3CLOUD.Lib/Release/jcW3CLOUD.Lib.tlog/unsuccessfulbuild
 /jcW3CLOUD.MOTIF/Release/jcW3CLOUD.MOTIF.vcxprojResolveAssemblyReference.cache
 /jcW3CLOUD.Lib/Release/BookmarkManager.obj
+/Release/jcW3CLOUD.Lib.lib
+/jcW3CLOUD.Lib/Release/ContentTypeParser.obj
+/jcW3CLOUD.Lib/Release/FileReader.obj
+/jcW3CLOUD.Lib/Release/FileWriter.obj
+/jcW3CLOUD.Lib/Release/HtmlContentRenderer.obj
+/jcW3CLOUD.Lib/Release/JsonContentRenderer.obj
+/jcW3CLOUD.Lib/Release/PlainTextContentRenderer.obj
+/jcW3CLOUD.Lib/Release/RequestRenderer.obj
+/jcW3CLOUD.Lib/Release/XmlContentRenderer.obj

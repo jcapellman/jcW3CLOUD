@@ -19,7 +19,7 @@ int BookmarkManager::generateID() {
 	while (found) {
 		bool foundInIteration = false;
 
-		for (int x = 0; x < _bookmarks.size(); x++) {
+		for (unsigned int x = 0; x < _bookmarks.size(); x++) {
 			BookmarkItem item = _bookmarks.at(x);
 
 			if (item.GetID() == id) {
@@ -38,7 +38,8 @@ int BookmarkManager::generateID() {
 }
 
 bool BookmarkManager::WriteBookmarksToFile() {
-	return FileWriter<BookmarkItem>().WriteFile(DEFAULT_BOOKMARK_FILENAME, this->_bookmarks);
+	return true;
+	//return FileWriter<vector<BookmarkItem>>(_bookmarks)->WriteFile(DEFAULT_BOOKMARK_FILENAME);
 }
 
 bool BookmarkManager::AddBookmark(string description, string url) {
@@ -53,7 +54,7 @@ bool BookmarkManager::AddBookmark(string description, string url) {
 	return true;
 }
 
-bool BookmarkManager::RemoveBook(int id) {
+bool BookmarkManager::RemoveBookmark(int id) {
 	this->_bookmarks.erase(this->_bookmarks.begin() + id);
 
 	return true;

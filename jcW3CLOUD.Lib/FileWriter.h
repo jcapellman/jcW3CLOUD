@@ -2,11 +2,11 @@
 #define __FILEWRITER__
 
 #include "Main.h"
+#include "BookmarkItem.h"
 
-template<class T>
 class FileWriter {
 	public:
-		template<class T> bool WriteFile(string fileName, vector<T> data);
+		bool WriteFile(string fileName, vector<string> data);
 };
 
 #endif
