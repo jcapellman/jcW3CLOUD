@@ -1,6 +1,7 @@
 #include "FileWriter.h"
 
-bool FileWriter::WriteFile(string fileName, vector<string> data) {
+template <class T>
+bool FileWriter::WriteFile(string fileName, vector<T> data) {
 	ofstream oFile(fileName);
 
 	if (!oFile.is_open()) {

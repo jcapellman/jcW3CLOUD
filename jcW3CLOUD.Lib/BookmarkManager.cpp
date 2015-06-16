@@ -38,8 +38,9 @@ int BookmarkManager::generateID() {
 }
 
 bool BookmarkManager::WriteBookmarksToFile() {
-	return true;
-	//return FileWriter<vector<BookmarkItem>>(_bookmarks)->WriteFile(DEFAULT_BOOKMARK_FILENAME);
+	FileWriter fw;
+	
+	return fw.WriteFile(DEFAULT_BOOKMARK_FILENAME, _bookmarks);
 }
 
 bool BookmarkManager::AddBookmark(string description, string url) {

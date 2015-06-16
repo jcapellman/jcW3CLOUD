@@ -6,7 +6,8 @@
 
 class FileWriter {
 	public:
-		bool WriteFile(string fileName, vector<string> data);
+		template <class T>
+		bool WriteFile(string fileName, vector<T> data);
 };
 
 #endif
