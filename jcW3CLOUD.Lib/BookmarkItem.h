@@ -20,13 +20,11 @@ class BookmarkItem {
 		int GetID() {
 			return this->_id;
 		}
+		
+		std::ostream& operator<<(std::ostream& os) {
+			os << GetID() << DEFAULT_BOOKMARK_DELIMETER << GetDescription() << DEFAULT_BOOKMARK_DELIMETER << GetUrl() << endl;
 
-		stringstream operator << (BookmarkItem &a) {
-			stringstream tmp;
-
-			tmp << a.GetID() << DEFAULT_BOOKMARK_DELIMETER << a.GetDescription() << DEFAULT_BOOKMARK_DELIMETER << a.GetUrl() << endl;
-
-			return tmp;
+			return os;
 		}
 	private:
 		string _description;

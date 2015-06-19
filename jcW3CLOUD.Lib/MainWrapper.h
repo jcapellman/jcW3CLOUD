@@ -5,7 +5,7 @@
 
 class MainWrapper {
 	public:
-		MainWrapper(Config cfg, WindowHandler &windowHandler);
+		MainWrapper(Config cfg, WindowHandler * windowHandler);
 
 		bool Init();
 

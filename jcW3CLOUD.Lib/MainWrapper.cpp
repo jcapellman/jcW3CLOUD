@@ -1,8 +1,8 @@
 #include "MainWrapper.h"
 
-MainWrapper::MainWrapper(Config cfg, WindowHandler &windowHandler) {
+MainWrapper::MainWrapper(Config cfg, WindowHandler * windowHandler) {
 	this->_config = cfg;
-	this->_windowHandler = &windowHandler;
+	this->_windowHandler = windowHandler;
 }
 
 void MainWrapper::Run() {
@@ -14,11 +14,11 @@ void MainWrapper::Quit() {
 }
 
 bool MainWrapper::Init() {
-	int xRes = this->_config.GetIntConfig(CONFIG_KEYS::xres);
-	int yRes = this->_config.GetIntConfig(CONFIG_KEYS::yres);
-	int bpp = this->_config.GetIntConfig(CONFIG_KEYS::bpp);
+	int xRes = this->_config.GetIntConfig(xres);
+	int yRes = this->_config.GetIntConfig(yres);
+	int BPP = this->_config.GetIntConfig(bpp);
 
-	string bookmarkFilename = this->_config.GetStringConfig(CONFIG_KEYS::bookmark_filename);
+	string bookmarkFilename = this->_config.GetStringConfig(bookmark_filename);
 
 	if (bookmarkFilename.length() == 0) {
 		bookmarkFilename = DEFAULT_BOOKMARK_FILENAME;
@@ -26,7 +26,7 @@ bool MainWrapper::Init() {
 
 	this->_bManager = BookmarkManager(bookmarkFilename);
 
-	this->_windowHandler->CreateWindow(xRes, yRes, bpp);
+	this->_windowHandler->CreateWindow(xRes, yRes, BPP);
 
 	this->_windowHandler->CreateMenu();
 

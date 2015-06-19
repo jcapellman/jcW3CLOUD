@@ -1,7 +1,7 @@
 #include "FileReader.h"
 
 vector<BookmarkItem> FileReader::GetVector(string fileName, string delimiter) {
-	std::ifstream iConfig(fileName, std::ifstream::in);
+	ifstream iConfig(fileName);
 	string line;
 	vector<BookmarkItem> tmpVector;
 

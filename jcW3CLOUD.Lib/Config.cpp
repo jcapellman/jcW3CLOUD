@@ -48,7 +48,7 @@ string Config::GetStringConfig(CONFIG_KEYS configKey) {
 }
 
 string Config::GetStringConfig(string key) {
-	auto pos = this->_mConfig.find(key);
+	int pos = this->_mConfig.find(key);
 
 	if (pos == this->_mConfig.end()) {
 		return "";

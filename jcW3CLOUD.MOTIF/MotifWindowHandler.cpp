@@ -1,5 +1,9 @@
 #include "MotifWindowHandler.h"
 
+bool MotifWindowHandler::AddWidget(ContentWidget &widget) {
+	return true;
+}
+
 bool MotifWindowHandler::CreateWindow(int xRes, int yRes, int bpp) {
 	this->_wTopLevel = XtVaAppInitialize(
 		&this->_appContext,

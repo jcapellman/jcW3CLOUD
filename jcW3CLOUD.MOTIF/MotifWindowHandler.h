@@ -1,12 +1,13 @@
 #include "Main.h"
 #include "../jcW3CLOUD.Lib/WindowHandler.h"
 
-class MotifWindowHandler : public WindowHandler {
+class MotifWindowHandler : public IWindowHandler {
 	public:
-		bool CreateWindow(int xRes, int yRes, int bpp);
-		bool CloseWindow();
-		bool EventPolling();
-		bool CreateMenu();
+		virtual bool CreateWindow(int xRes, int yRes, int bpp);
+		virtual bool CloseWindow();
+		virtual bool EventPolling();
+		virtual bool CreateMenu();
+		virtual bool AddWidget(ContentWidget &widget);
 	private:
 		XtAppContext _appContext;
 		Widget _wTopLevel;

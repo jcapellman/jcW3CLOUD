@@ -5,10 +5,12 @@
 
 int main(int argc, char* argv []) {
 	Config cfg = Config();
-	MotifWindowHandler windowHandler = MotifWindowHandler();
+	WindowHandler * wh;
 
-	MainWrapper mainWrapper = MainWrapper(cfg, windowHandler);
+	wh = new MotifWindowHandler;
+
+	MainWrapper mainWrapper = MainWrapper(cfg, wh);
 	mainWrapper.AIO();
 
-	exit(0);
+	return 0;
 }
