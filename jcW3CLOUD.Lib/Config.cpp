@@ -1,7 +1,5 @@
 #include "Config.h"
 
-Config::Config() : Config(DEFAULT_CONFIG_FILENAME) { }
-
 Config::Config(char * fileName) {
 	readConfig(fileName);
 }

@@ -12,7 +12,6 @@ enum CONFIG_KEYS {
 
 class Config {
 	public:
-		Config();
 		Config(char * fileName);
 
 		int GetIntConfig(CONFIG_KEYS configKey);
