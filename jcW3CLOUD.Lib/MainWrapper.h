@@ -5,7 +5,7 @@
 
 class MainWrapper {
 	public:
-		MainWrapper(Config cfg, WindowHandler * windowHandler);
+		MainWrapper(Config * cfg, WindowHandler * windowHandler);
 
 		bool Init();
 
@@ -14,7 +14,7 @@ class MainWrapper {
 
 		void AIO();
 	private:
-		Config _config;
+		Config * _config;
 		WindowHandler * _windowHandler;
 		BookmarkManager _bManager;
 };

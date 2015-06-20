@@ -1,13 +1,13 @@
 #include "RequestRenderer.h"
 
-bool RequestRenderer::Render(string request, WindowHandler &windowHandler, NetworkHandler &networkHandler) {
-	ContentTypeParser ctParser = ContentTypeParser();
+bool RequestRenderer::Render(string request, WindowHandler  * windowHandler, NetworkHandler &networkHandler) {
+	ContentTypeParser ctParser;
 
 	string requestContent = networkHandler.GetContent(request);
 
 	CONTENTRENDERERS contentType = ctParser.GetContentRendererType(requestContent);
 
-	
+	/*
 	switch (contentType) {
 		case HTML:
 			return HtmlContentRenderer(windowHandler).RenderContent(requestContent);
@@ -21,6 +21,6 @@ bool RequestRenderer::Render(string request, WindowHandler &windowHandler, Netwo
 		default:
 			return PlainTextContentRenderer(windowHandler).RenderContent(requestContent);
 	}
-
+*/
 	return false;
 }

@@ -13,7 +13,7 @@ class RequestRenderer {
 	public:
 		RequestRenderer();
 
-		bool Render(string request, WindowHandler &windowHandler, NetworkHandler &networkHandler);
+		bool Render(string request, WindowHandler * windowHandler, NetworkHandler &networkHandler);
 };
 
 #endif

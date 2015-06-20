@@ -6,7 +6,7 @@
 
 class JsonContentRenderer : public ContentRenderer {
 	public:
-		JsonContentRenderer(WindowHandler &windowHandler) : ContentRenderer(windowHandler) { }
+		JsonContentRenderer(WindowHandler * windowHandler) : ContentRenderer(windowHandler) { }
 
 
 		virtual bool RenderContent(string content);

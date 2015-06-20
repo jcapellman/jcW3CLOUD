@@ -13,7 +13,7 @@ enum CONTENTRENDERERS {
 
 class ContentRenderer {
 	public:
-		ContentRenderer(WindowHandler &windowHandler);
+		ContentRenderer(WindowHandler * windowHandler);
 
 		virtual bool RenderContent(string content) = 0;
 };

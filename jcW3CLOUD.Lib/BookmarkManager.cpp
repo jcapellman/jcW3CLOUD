@@ -40,7 +40,8 @@ int BookmarkManager::generateID() {
 bool BookmarkManager::WriteBookmarksToFile() {
 	FileWriter fw;
 	
-	return fw.WriteFile(DEFAULT_BOOKMARK_FILENAME, _bookmarks);
+	//return fw.WriteFile(DEFAULT_BOOKMARK_FILENAME, _bookmarks);
+return true;
 }
 
 bool BookmarkManager::AddBookmark(string description, string url) {

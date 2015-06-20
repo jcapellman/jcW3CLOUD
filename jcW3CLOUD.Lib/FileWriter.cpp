@@ -1,7 +1,7 @@
 #include "FileWriter.h"
 
 template <class T>
-bool FileWriter::WriteFile(string fileName, vector<T, std::allocator<T>>) data) {
+bool FileWriter::WriteFile(string fileName, vector<T, std::allocator<T>> data) {
 	ofstream oFile(fileName);
 
 	if (!oFile.is_open()) {

@@ -6,7 +6,7 @@
 
 class HtmlContentRenderer : public ContentRenderer {
 public:
-	HtmlContentRenderer(WindowHandler &windowHandler) : ContentRenderer(windowHandler) { }
+	HtmlContentRenderer(WindowHandler * windowHandler) : ContentRenderer(windowHandler) { }
 
 	virtual bool RenderContent(string content);
 };
