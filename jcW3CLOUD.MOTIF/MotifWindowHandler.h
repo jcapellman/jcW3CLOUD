@@ -1,7 +1,7 @@
 #include "Main.h"
 #include "../jcW3CLOUD.Lib/WindowHandler.h"
 
-class MotifWindowHandler : public IWindowHandler {
+class MotifWindowHandler : public WindowHandler {
 	public:
 		virtual bool CreateWindow(int xRes, int yRes, int bpp);
 		virtual bool CloseWindow();

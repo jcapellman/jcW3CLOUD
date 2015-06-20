@@ -6,9 +6,9 @@
 
 class PlainTextContentRenderer : public ContentRenderer {
 	public:
-		PlainTextContentRenderer(WindowHandler &windowHandler);
+		PlainTextContentRenderer(WindowHandler &windowHandler) : ContentRenderer(windowHandler) { }
 
-		bool RenderContent(string content);
+		virtual bool RenderContent(string content);
 };
 
 #endif

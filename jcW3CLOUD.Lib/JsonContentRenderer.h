@@ -6,9 +6,10 @@
 
 class JsonContentRenderer : public ContentRenderer {
 	public:
-		JsonContentRenderer(WindowHandler &windowHandler);
+		JsonContentRenderer(WindowHandler &windowHandler) : ContentRenderer(windowHandler) { }
 
-		bool RenderContent(string content);
+
+		virtual bool RenderContent(string content);
 };
 
 #endif

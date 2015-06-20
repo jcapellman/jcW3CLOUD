@@ -6,9 +6,9 @@
 
 class XmlContentRenderer : public ContentRenderer {
 	public:
-		XmlContentRenderer(WindowHandler &windowHandler);
+		XmlContentRenderer(WindowHandler &windowHandler) : ContentRenderer(windowHandler) { }
 
-		bool RenderContent(string content);
+		virtual bool RenderContent(string content);
 };
 
 #endif

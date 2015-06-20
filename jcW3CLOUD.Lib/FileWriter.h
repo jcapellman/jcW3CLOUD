@@ -7,7 +7,7 @@
 class FileWriter {
 	public:
 		template <class T>
-		bool WriteFile(string fileName, vector<T> data);
+		bool WriteFile(string fileName, vector<T, std::allocator<T>>);
 };
 
 #endif
