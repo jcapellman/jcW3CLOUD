@@ -5,4 +5,6 @@ When I started this project in 2012 I was still doing WCF and WPF (pre-mvvm), bu
 
 The original blog post from January 28, 2012 is here -> http://www.jarredcapellman.com/2012/1/28/cloud-based-web-rendering
 
-Over time this evolved into simply creating a brand new browser from the ground up in C++ with Motif and SDL versions.
+Over time this evolved into simply creating a brand new browser from the ground up in C++ with Motif.
+
+Currently the library compiles perfectly under Visual Studio 2013, however the Motif + Library is having issues compiling under cygwin and g++ (working on getting this resolved).
