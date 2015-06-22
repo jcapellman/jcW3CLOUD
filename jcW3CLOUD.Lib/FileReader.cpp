@@ -14,7 +14,7 @@ vector<BookmarkItem> FileReader::GetVector(string fileName, string delimiter) {
 		string url;
 		int id;
 
-		int positionIdx = line.find(delimiter);
+		unsigned int positionIdx = line.find(delimiter);
 
 		if (positionIdx == string::npos) {
 			continue;
@@ -55,7 +55,7 @@ map<string, string> FileReader::GetMap(string fileName, string delimiter) {
 		string value;
 		string key;
 
-		int positionIdx = line.find(delimiter);
+		unsigned int positionIdx = line.find(delimiter);
 
 		if (positionIdx == string::npos) {
 			continue;

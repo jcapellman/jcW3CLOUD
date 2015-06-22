@@ -7,6 +7,9 @@ bool RequestRenderer::Render(string request, WindowHandler  * windowHandler, Net
 
 	CONTENTRENDERERS contentType = ctParser.GetContentRendererType(requestContent);
 
+	if (contentType == HTML) {
+		return false;
+	}
 	/*
 	switch (contentType) {
 		case HTML:
@@ -22,5 +25,7 @@ bool RequestRenderer::Render(string request, WindowHandler  * windowHandler, Net
 			return PlainTextContentRenderer(windowHandler).RenderContent(requestContent);
 	}
 */
+	windowHandler = NULL;
+
 	return false;
 }
