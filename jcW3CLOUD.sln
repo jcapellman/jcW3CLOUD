@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jcW3CLOUD.Lib", "jcW3CLOUD.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jcW3CLOUD.MOTIF", "jcW3CLOUD.MOTIF\jcW3CLOUD.MOTIF.vcxproj", "{5B52D4D1-6752-4F2F-B0A1-FE4D1E5FA3C4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jcW3CLOUD.Gtk", "jcW3CLOUD.Gtk\jcW3CLOUD.Gtk.vcxproj", "{DFD27AD0-4509-471E-811E-F93D69C35C80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,20 @@ Global
 		{5B52D4D1-6752-4F2F-B0A1-FE4D1E5FA3C4}.Release|Win32.Build.0 = Release|Win32
 		{5B52D4D1-6752-4F2F-B0A1-FE4D1E5FA3C4}.Release|x86.ActiveCfg = Release|Win32
 		{5B52D4D1-6752-4F2F-B0A1-FE4D1E5FA3C4}.Release|x86.Build.0 = Release|Win32
+		{DFD27AD0-4509-471E-811E-F93D69C35C80}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{DFD27AD0-4509-471E-811E-F93D69C35C80}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{DFD27AD0-4509-471E-811E-F93D69C35C80}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{DFD27AD0-4509-471E-811E-F93D69C35C80}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DFD27AD0-4509-471E-811E-F93D69C35C80}.Debug|Win32.Build.0 = Debug|Win32
+		{DFD27AD0-4509-471E-811E-F93D69C35C80}.Debug|x86.ActiveCfg = Debug|Win32
+		{DFD27AD0-4509-471E-811E-F93D69C35C80}.Debug|x86.Build.0 = Debug|Win32
+		{DFD27AD0-4509-471E-811E-F93D69C35C80}.Release|Any CPU.ActiveCfg = Release|Win32
+		{DFD27AD0-4509-471E-811E-F93D69C35C80}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{DFD27AD0-4509-471E-811E-F93D69C35C80}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{DFD27AD0-4509-471E-811E-F93D69C35C80}.Release|Win32.ActiveCfg = Release|Win32
+		{DFD27AD0-4509-471E-811E-F93D69C35C80}.Release|Win32.Build.0 = Release|Win32
+		{DFD27AD0-4509-471E-811E-F93D69C35C80}.Release|x86.ActiveCfg = Release|Win32
+		{DFD27AD0-4509-471E-811E-F93D69C35C80}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

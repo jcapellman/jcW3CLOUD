@@ -10,12 +10,10 @@ bool RequestRenderer::Render(string request, WindowHandler  * windowHandler, Net
 	if (contentType == HTML) {
 		return false;
 	}
-	/*
+	
 	switch (contentType) {
 		case HTML:
 			return HtmlContentRenderer(windowHandler).RenderContent(requestContent);
-
-			break;
 		case JSON:
 			return JsonContentRenderer(windowHandler).RenderContent(requestContent);
 		case XML:
@@ -24,7 +22,7 @@ bool RequestRenderer::Render(string request, WindowHandler  * windowHandler, Net
 		default:
 			return PlainTextContentRenderer(windowHandler).RenderContent(requestContent);
 	}
-*/
+
 	windowHandler = NULL;
 
 	return false;
