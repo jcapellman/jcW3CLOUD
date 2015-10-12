@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="jcW3CLOUD.UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:jcW3CLOUD.UWP"
+    xmlns:converters="using:jcW3CLOUD.UWP.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisbleConverter" />
+    </Page.Resources>
+    
+    <Grid Background="#1e1e1e">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBox Grid.Row="0" Background="White" Text="{Binding RequestAction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="16" x:Name="txtBxURL" KeyDown="txtBxURL_OnKeyDown" />
+
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding ContentControls, Mode=TwoWay}">
+            <ItemsControl.Template>
+                <ControlTemplate>
+                    <ScrollViewer x:Name="ScrollViewer" Padding="{TemplateBinding Padding}">
+                        <ItemsPresenter />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+        </ItemsControl>
+
+        <ProgressBar Grid.Row="2" IsIndeterminate="True" Visibility="{Binding IsWorking, Mode=TwoWay, Converter={StaticResource BoolToVisbleConverter}}" />
+    </Grid>
+</Page>
