@@ -3,11 +3,13 @@ using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
+
 using jcW3CLOUD.PCL.Enums;
 using jcW3CLOUD.PCL.Renderers;
 
 namespace jcW3CLOUD.PCL.ViewModels {
     public class MainModel : BaseModel {
+
         private ObservableCollection<dynamic> _contentControls;
          
         public ObservableCollection<dynamic> ContentControls {

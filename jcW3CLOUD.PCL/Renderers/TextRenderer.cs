@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 
-using jcW3CLOUD.PCL.BaseControls;
 using jcW3CLOUD.PCL.Enums;
 
 namespace jcW3CLOUD.PCL.Renderers {
@@ -16,7 +15,7 @@ namespace jcW3CLOUD.PCL.Renderers {
 
             label.LabelContent = request;
             label.IsFullScreen = true;
-           
+            
             return new List<dynamic> {
                 label.GetPlatformControl()
             };

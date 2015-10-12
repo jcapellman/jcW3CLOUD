@@ -12,16 +12,34 @@
         <converters:BoolToVisibilityConverter x:Key="BoolToVisbleConverter" />
     </Page.Resources>
     
-    <Grid Background="#1e1e1e">
+    <Grid Background="#4e4e4e">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" Background="White" Text="{Binding RequestAction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="16" x:Name="txtBxURL" KeyDown="txtBxURL_OnKeyDown" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
 
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding ContentControls, Mode=TwoWay}">
+        <Grid Grid.Row="0" Background="#1e1e1e">
+            <TextBox Style="{StaticResource URLBar}" Text="{Binding RequestAction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txtBxURL" KeyDown="txtBxURL_OnKeyDown" />
+        </Grid>
+        
+        <Button Grid.Row="0" Grid.Column="1" x:Name="btnMainButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
+                     Width="50" Height="50" Background="#1e1e1e" Foreground="White">
+            <Button.Flyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="New Window" />
+                    <MenuFlyoutSeparator/>
+                    <MenuFlyoutItem Text="Exit" x:Name="mfiExit" Click="mfiExit_OnClick" />
+                </MenuFlyout>
+            </Button.Flyout>
+        </Button>
+        
+        <ItemsControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="icMain" ItemsSource="{Binding ContentControls, Mode=TwoWay}">
             <ItemsControl.Template>
                 <ControlTemplate>
                     <ScrollViewer x:Name="ScrollViewer" Padding="{TemplateBinding Padding}">
@@ -31,6 +49,6 @@
             </ItemsControl.Template>
         </ItemsControl>
 
-        <ProgressBar Grid.Row="2" IsIndeterminate="True" Visibility="{Binding IsWorking, Mode=TwoWay, Converter={StaticResource BoolToVisbleConverter}}" />
+        <ProgressBar Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" IsIndeterminate="True" Visibility="{Binding IsWorking, Mode=TwoWay, Converter={StaticResource BoolToVisbleConverter}}" />
     </Grid>
 </Page>
