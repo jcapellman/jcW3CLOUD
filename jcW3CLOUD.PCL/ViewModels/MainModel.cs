@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 
 using jcW3CLOUD.PCL.Enums;
+using jcW3CLOUD.PCL.Objects;
 using jcW3CLOUD.PCL.Renderers;
+using jcW3CLOUD.PCL.Wrappers;
 
 namespace jcW3CLOUD.PCL.ViewModels {
     public class MainModel : BaseModel {
@@ -21,11 +25,40 @@ namespace jcW3CLOUD.PCL.ViewModels {
         private string _requestAction;
 
         private readonly BaseControlImplementation _controlImplemntation;
+        private readonly BasePlatformImplementation _platformImplementation;
 
-        public MainModel(BaseControlImplementation controlImplementation) {
+        private ObservableCollection<BrowsingHistoryItem> _browsingHistoryItems;
+
+        public ObservableCollection<BrowsingHistoryItem> BrowsingHistoryItems {
+            get {  return _browsingHistoryItems; }
+            set { _browsingHistoryItems = value; OnPropertyChanged(); }
+        }
+
+        public MainModel(BaseControlImplementation controlImplementation, BasePlatformImplementation platformImplementation) {
             IsWorking = false;
 
             _controlImplemntation = controlImplementation;
+            _platformImplementation = platformImplementation;
+        }
+
+        public async Task<bool> LoadData() {
+            try {
+                var fs = _platformImplementation.GetFileSystem();
+
+                var result = await fs.GetFile<BrowsingHistoryWrapper>(FILE_TYPES.BROWSING_HISTORY);
+
+                if (result == null || result.HasError) {
+                    BrowsingHistoryItems = new ObservableCollection<BrowsingHistoryItem>();
+                    return true;
+                }
+
+                BrowsingHistoryItems = new ObservableCollection<BrowsingHistoryItem>(result.Value.History);
+
+                return true;
+            } catch (Exception ex) {
+
+                return false;
+            }
         }
 
         public string RequestAction {  get { return _requestAction; } set { _requestAction = value; OnPropertyChanged(); } }
@@ -46,6 +79,12 @@ namespace jcW3CLOUD.PCL.ViewModels {
             return null;
         }
 
+        public async Task<CTO<bool>> Shutdown() {
+            var fs = _platformImplementation.GetFileSystem();
+
+            return await fs.WriteFile(FILE_TYPES.BROWSING_HISTORY, new BrowsingHistoryWrapper { History = BrowsingHistoryItems.ToList()});
+        }
+
         private async Task<string> GetContent(string request) {
             using (var httpClient = new HttpClient()) {
                 return await httpClient.GetStringAsync(request);
@@ -64,6 +103,10 @@ namespace jcW3CLOUD.PCL.ViewModels {
             }
 
             IsWorking = false;
+
+            BrowsingHistoryItems.Add(new BrowsingHistoryItem {URL = RequestAction});
+
+            await Shutdown();
 
             return true;
         }

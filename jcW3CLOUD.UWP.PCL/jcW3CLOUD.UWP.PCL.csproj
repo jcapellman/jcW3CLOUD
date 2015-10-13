@@ -108,8 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\LabelControl.cs" />
+    <Compile Include="PlatformImplementations\FileSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UWPControls.cs" />
+    <Compile Include="UWPPI.cs" />
     <Content Include="Properties\jcW3CLOUD.UWP.PCL.rd.xml" />
   </ItemGroup>
   <ItemGroup>

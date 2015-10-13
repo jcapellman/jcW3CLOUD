@@ -34,20 +34,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="BaseControlImplementation.cs" />
     <Compile Include="BaseControls\BaseControl.cs" />
     <Compile Include="BaseControls\BaseLabelControl.cs" />
+    <Compile Include="BasePlatformImplementation.cs" />
     <Compile Include="Enums\CONTENT_TYPES.cs" />
+    <Compile Include="Enums\FILE_TYPES.cs" />
+    <Compile Include="Objects\BrowsingHistoryItem.cs" />
+    <Compile Include="Objects\CTO.cs" />
     <Compile Include="PlatformAbstractions\BaseFileSystem.cs" />
     <Compile Include="PlatformAbstractions\BasePA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\BaseRenderer.cs" />
     <Compile Include="Renderers\TextRenderer.cs" />
+    <Compile Include="Wrappers\BrowsingHistoryWrapper.cs" />
     <Compile Include="ViewModels\BaseModel.cs" />
     <Compile Include="ViewModels\MainModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

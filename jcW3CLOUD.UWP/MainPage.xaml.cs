@@ -14,13 +14,19 @@ namespace jcW3CLOUD.UWP {
         public MainPage() {
             InitializeComponent();
 
-            DataContext = new MainModel(new UWPControls());
+            DataContext = new MainModel(new UWPControls(), new UWPPI());
+
+            Unloaded += MainPage_Unloaded;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e) {
+        private async void MainPage_Unloaded(object sender, RoutedEventArgs e) { await viewModel.Shutdown(); }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e) {
+            var result = await viewModel.LoadData();
+
             icMain.Focus(FocusState.Programmatic);
         }
-
+        
         public void mfiExit_OnClick(object sender, RoutedEventArgs e) {
             Application.Current.Exit();
         }

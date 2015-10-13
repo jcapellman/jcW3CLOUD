@@ -25,7 +25,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Row="0" Background="#1e1e1e">
-            <TextBox Style="{StaticResource URLBar}" Text="{Binding RequestAction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txtBxURL" KeyDown="txtBxURL_OnKeyDown" />
+            <AutoSuggestBox Style="{StaticResource URLBar}" Text="{Binding RequestAction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" QueryIcon="Find" TextMemberPath="URL" ItemsSource="{Binding BrowsingHistoryItems, Mode=TwoWay}" x:Name="txtBxURL" KeyDown="txtBxURL_OnKeyDown" />
         </Grid>
         
         <Button Grid.Row="0" Grid.Column="1" x:Name="btnMainButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
