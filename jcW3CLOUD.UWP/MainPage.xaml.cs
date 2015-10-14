@@ -1,9 +1,7 @@
-﻿using Windows.System;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-
+using jcW3CLOUD.PCL.Objects;
 using jcW3CLOUD.PCL.ViewModels;
 using jcW3CLOUD.UWP.PCL;
 
@@ -15,8 +13,18 @@ namespace jcW3CLOUD.UWP {
             InitializeComponent();
 
             DataContext = new MainModel(new UWPControls(), new UWPPI());
-
+            
             Unloaded += MainPage_Unloaded;
+        }
+
+        private void TxtBxURL_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args) {
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput) {
+                txtBxURL.ItemsSource = viewModel.BrowsingHistoryItems;
+            }
+        }
+
+        private void TxtBxURL_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args) {
+            viewModel.RequestAction = sender.Text;
         }
 
         private async void MainPage_Unloaded(object sender, RoutedEventArgs e) { await viewModel.Shutdown(); }
@@ -31,12 +39,12 @@ namespace jcW3CLOUD.UWP {
             Application.Current.Exit();
         }
 
-        private async void txtBxURL_OnKeyDown(object sender, KeyRoutedEventArgs e) {
-            if (e.Key == VirtualKey.Enter) {
-                icMain.Focus(FocusState.Programmatic);
+        private async void txtBxURL_SubmitSuggestion(AutoSuggestBox autoSuggestBox, AutoSuggestBoxQuerySubmittedEventArgs args) {
+            viewModel.RequestAction = args.ChosenSuggestion != null ? ((BrowsingHistoryItem) args.ChosenSuggestion).URL : args.QueryText;
 
-                await viewModel.ExecuteAction();
-            }
+            icMain.Focus(FocusState.Programmatic);
+
+            await viewModel.ExecuteAction();           
         }
     }
 }

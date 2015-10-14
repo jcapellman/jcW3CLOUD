@@ -84,30 +84,64 @@ namespace jcW3CLOUD.PCL.ViewModels {
 
             return await fs.WriteFile(FILE_TYPES.BROWSING_HISTORY, new BrowsingHistoryWrapper { History = BrowsingHistoryItems.ToList()});
         }
-
-        private async Task<string> GetContent(string request) {
+        
+        private async Task<HttpResponseMessage> GetContent(string request) {
             using (var httpClient = new HttpClient()) {
-                return await httpClient.GetStringAsync(request);
+                var message = new HttpRequestMessage(HttpMethod.Get, request);
+                message.Headers.Add("User-Agent", "jcW3CLOUD");
+
+                return await httpClient.SendAsync(message);
             }
+        }
+
+        private void SanitizeRequestString() {
+            if (!RequestAction.ToUpper().StartsWith("HTTP://")) {
+                RequestAction = "http://" + RequestAction;
+            }
+        }
+
+        private CONTENT_TYPES parseResponse(HttpResponseMessage response, ref string errorString) {
+            if (!response.IsSuccessStatusCode) {
+                errorString = response.StatusCode.ToString();
+                return CONTENT_TYPES.TEXT;
+            }
+
+            if (response.Content.Headers.ContentType.MediaType == "text/plain") {
+                return CONTENT_TYPES.TEXT;
+            }
+
+            return CONTENT_TYPES.TEXT;
         }
 
         public async Task<bool> ExecuteAction() {
             IsWorking = true;
 
-            var content = await GetContent(RequestAction);
+            SanitizeRequestString();
 
-            if (RequestAction.EndsWith(".txt")) {
-                var renderer = GetRenderer(CONTENT_TYPES.TEXT);
+            var response = await GetContent(RequestAction);
 
-                ContentControls = new ObservableCollection<dynamic>(renderer.RenderContent(content));
+            var errorString = string.Empty;
+
+            var renderer = GetRenderer(parseResponse(response, ref errorString));
+
+            string content;
+
+            if (!string.IsNullOrEmpty(errorString)) {
+                content = errorString;
+            } else {
+                content = await response.Content.ReadAsStringAsync();
             }
 
+            ContentControls = new ObservableCollection<dynamic>(renderer.RenderContent(content));
+ 
             IsWorking = false;
 
-            BrowsingHistoryItems.Add(new BrowsingHistoryItem {URL = RequestAction});
+            if (BrowsingHistoryItems.All(a => a.URL != RequestAction)) {
+                BrowsingHistoryItems.Add(new BrowsingHistoryItem { URL = RequestAction });
 
-            await Shutdown();
-
+                await Shutdown();
+            }
+            
             return true;
         }
     }
