@@ -21,5 +21,7 @@ namespace jcW3CLOUD.PCL.PlatformAbstractions {
         }
 
         protected static string GetJSONStringFromT<T>(T obj) { return JsonConvert.SerializeObject(obj); }
+
+        protected static T GetObjectFromJSONString<T>(string str) { return JsonConvert.DeserializeObject<T>(str); }
     }
 }

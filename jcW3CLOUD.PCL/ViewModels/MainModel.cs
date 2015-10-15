@@ -48,8 +48,16 @@ namespace jcW3CLOUD.PCL.ViewModels {
             set { _SETTING_enableHistory = value; OnPropertyChanged(); }
         }
 
+        private bool _SETTING_encryptAllFiles;
+
+        public bool SETTING_encryptAllFiles {
+            get { return _SETTING_encryptAllFiles; }
+            set { _SETTING_encryptAllFiles = value; OnPropertyChanged(); }
+        }
+
         public void LoadSettings() {
             SETTING_enableHistory = _platformImplementation.GetSettings().GetSetting<bool>(SETTINGS.ENABLE_HISTORY);
+            SETTING_encryptAllFiles = _platformImplementation.GetSettings().GetSetting<bool>(SETTINGS.ENCRYPT_ALL_FILES);
         }
 
         public void SaveSettings() {
