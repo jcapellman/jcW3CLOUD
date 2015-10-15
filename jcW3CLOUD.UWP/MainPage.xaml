@@ -34,6 +34,8 @@
                 <MenuFlyout>
                     <MenuFlyoutItem Text="New Window" />
                     <MenuFlyoutSeparator/>
+                    <MenuFlyoutItem Text="Settings" x:Name="mfiSettings" Click="mfiSettings_OnClick" />
+                    <MenuFlyoutSeparator />
                     <MenuFlyoutItem Text="Exit" x:Name="mfiExit" Click="mfiExit_OnClick" />
                 </MenuFlyout>
             </Button.Flyout>
@@ -50,5 +52,27 @@
         </ItemsControl>
 
         <ProgressBar Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" IsIndeterminate="True" Visibility="{Binding IsWorking, Mode=TwoWay, Converter={StaticResource BoolToVisbleConverter}}" />
+        
+        <ContentDialog Grid.Row="0" Grid.RowSpan="2" Width="600" Height="300" Grid.Column="0" x:Name="cdSettings">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="settings" FontSize="30" />
+                
+                <ToggleSwitch Grid.Row="1" Grid.Column="0" x:Name="tsEnableHistory" IsOn="{Binding SETTING_enableHistory, Mode=TwoWay}" Header="Store History" />
+
+                <Button Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" x:Name="btnCancel" Click="btnCancel_OnClick" Content="Cancel" />
+                <Button Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" x:Name="btnSave" Click="btnSave_OnClick" Content="Save" />
+            </Grid>
+        </ContentDialog>
     </Grid>
 </Page>

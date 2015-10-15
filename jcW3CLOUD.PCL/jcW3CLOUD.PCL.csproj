@@ -40,10 +40,12 @@
     <Compile Include="BasePlatformImplementation.cs" />
     <Compile Include="Enums\CONTENT_TYPES.cs" />
     <Compile Include="Enums\FILE_TYPES.cs" />
+    <Compile Include="Enums\SETTINGS.cs" />
     <Compile Include="Objects\BrowsingHistoryItem.cs" />
     <Compile Include="Objects\CTO.cs" />
     <Compile Include="PlatformAbstractions\BaseFileSystem.cs" />
     <Compile Include="PlatformAbstractions\BasePA.cs" />
+    <Compile Include="PlatformAbstractions\BaseSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\BaseRenderer.cs" />
     <Compile Include="Renderers\TextRenderer.cs" />

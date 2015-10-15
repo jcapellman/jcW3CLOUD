@@ -41,6 +41,21 @@ namespace jcW3CLOUD.PCL.ViewModels {
             _platformImplementation = platformImplementation;
         }
 
+        private bool _SETTING_enableHistory;
+
+        public bool SETTING_enableHistory {
+            get {  return _SETTING_enableHistory; }
+            set { _SETTING_enableHistory = value; OnPropertyChanged(); }
+        }
+
+        public void LoadSettings() {
+            SETTING_enableHistory = _platformImplementation.GetSettings().GetSetting<bool>(SETTINGS.ENABLE_HISTORY);
+        }
+
+        public void SaveSettings() {
+            _platformImplementation.GetSettings().WriteSetting(SETTINGS.ENABLE_HISTORY, SETTING_enableHistory);
+        }
+
         public async Task<bool> LoadData() {
             try {
                 var fs = _platformImplementation.GetFileSystem();
@@ -135,6 +150,10 @@ namespace jcW3CLOUD.PCL.ViewModels {
             ContentControls = new ObservableCollection<dynamic>(renderer.RenderContent(content));
  
             IsWorking = false;
+
+            if (!SETTING_enableHistory) {
+                return true;
+            }
 
             if (BrowsingHistoryItems.All(a => a.URL != RequestAction)) {
                 BrowsingHistoryItems.Add(new BrowsingHistoryItem { URL = RequestAction });

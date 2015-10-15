@@ -5,5 +5,9 @@ using jcW3CLOUD.UWP.PCL.PlatformImplementations;
 namespace jcW3CLOUD.UWP.PCL {
     public class UWPPI : BasePlatformImplementation {
         public override BaseFileSystem GetFileSystem() { return new FileSystem(); }
+
+        public override BaseSettings GetSettings() {
+            return new Settings();
+        }
     }
 }
