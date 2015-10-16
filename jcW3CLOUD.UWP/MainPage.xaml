@@ -12,7 +12,7 @@
         <converters:BoolToVisibilityConverter x:Key="BoolToVisbleConverter" />
     </Page.Resources>
     
-    <Grid Background="#4e4e4e">
+    <Grid Style="{StaticResource MainWindow}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -24,12 +24,11 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Background="#1e1e1e">
+        <Grid Grid.Row="0" Style="{StaticResource GridUrlbar}">
             <AutoSuggestBox Style="{StaticResource URLBar}" TextChanged="TxtBxURL_TextChanged" SuggestionChosen="TxtBxURL_SuggestionChosen" QueryIcon="Find" DisplayMemberPath="URL" TextMemberPath="URL" x:Name="txtBxURL" QuerySubmitted="txtBxURL_SubmitSuggestion" />
         </Grid>
         
-        <Button Grid.Row="0" Grid.Column="1" x:Name="btnMainButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
-                     Width="50" Height="50" Background="#1e1e1e" Foreground="White">
+        <Button Grid.Row="0" Grid.Column="1" x:Name="btnMainButton" Style="{StaticResource Hamburger}">
             <Button.Flyout>
                 <MenuFlyout>
                     <MenuFlyoutItem Text="New Window" />
@@ -67,13 +66,13 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="settings" FontSize="30" />
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="settings" Style="{StaticResource PopupHeader}" />
                 
                 <ToggleSwitch Grid.Row="1" Grid.Column="0" x:Name="tsEnableHistory" IsOn="{Binding SETTING_enableHistory, Mode=TwoWay}" Header="Store History" />
                 <ToggleSwitch Grid.Row="2" Grid.Column="0" x:Name="tsEncryptAllFiles" IsOn="{Binding SETTING_encryptAllFiles, Mode=TwoWay}" Header="Encrypt All Files" />
 
-                <Button Grid.Row="3" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" x:Name="btnCancel" Click="btnCancel_OnClick" Content="Cancel" />
-                <Button Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" x:Name="btnSave" Click="btnSave_OnClick" Content="Save" />
+                <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource PopupAction}"  HorizontalAlignment="Left" x:Name="btnCancel" Click="btnCancel_OnClick" Content="Cancel" />
+                <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource PopupAction}"  HorizontalAlignment="Right" x:Name="btnSave" Click="btnSave_OnClick" Content="Save" />
             </Grid>
         </ContentDialog>
     </Grid>
