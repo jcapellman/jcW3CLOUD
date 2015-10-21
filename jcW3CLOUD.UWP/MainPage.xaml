@@ -24,7 +24,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Style="{StaticResource GridUrlbar}">
+        <Grid Grid.Row="0" Style="{StaticResource gridURLBAR}">
             <AutoSuggestBox Style="{StaticResource URLBar}" TextChanged="TxtBxURL_TextChanged" SuggestionChosen="TxtBxURL_SuggestionChosen" QueryIcon="Find" DisplayMemberPath="URL" TextMemberPath="URL" x:Name="txtBxURL" QuerySubmitted="txtBxURL_SubmitSuggestion" />
         </Grid>
         
