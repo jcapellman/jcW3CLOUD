@@ -31,7 +31,7 @@
     </Style>
     
     <Style TargetType="Grid" x:Key="MainWindow">
-        <Setter Property="Background" Value="#4e4e4e" />
+        <Setter Property="Background" Value="#1e1e1e" />
     </Style>
 
     <Style TargetType="Grid" x:Key="gridURLBAR">

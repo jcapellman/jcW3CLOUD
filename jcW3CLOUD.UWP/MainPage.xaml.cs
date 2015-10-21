@@ -57,11 +57,15 @@ namespace jcW3CLOUD.UWP {
         }
 
         private async void txtBxURL_SubmitSuggestion(AutoSuggestBox autoSuggestBox, AutoSuggestBoxQuerySubmittedEventArgs args) {
+            sbLogo.Begin();
+
             viewModel.RequestAction = args.ChosenSuggestion != null ? ((BrowsingHistoryItem) args.ChosenSuggestion).URL : args.QueryText;
 
             icMain.Focus(FocusState.Programmatic);
 
-            await viewModel.ExecuteAction();           
+            var result = await viewModel.ExecuteAction();
+
+            sbLogo.Stop();
         }
     }
 }

@@ -13,6 +13,16 @@
     </Page.Resources>
     
     <Grid Style="{StaticResource MainWindow}">
+        <Grid.Resources>
+            <Storyboard x:Name="sbLogo">
+                <DoubleAnimation
+                   Storyboard.TargetName="ppLogo"
+                   Storyboard.TargetProperty="iLogo.RotationY"
+                   From="0" To="360" Duration="0:0:2" 
+                   RepeatBehavior="Forever" />
+            </Storyboard>
+        </Grid.Resources>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -21,6 +31,7 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
@@ -39,8 +50,14 @@
                 </MenuFlyout>
             </Button.Flyout>
         </Button>
-        
-        <ItemsControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="icMain" ItemsSource="{Binding ContentControls, Mode=TwoWay}">
+
+        <Image Grid.Row="0" Grid.Column="2" Source="Assets/AnimatedLogo.png" x:Name="iLogo" Height="35">
+            <Image.Projection>
+                <PlaneProjection RotationY="0" x:Name="ppLogo"  CenterOfRotationX="0.5" />
+            </Image.Projection>
+        </Image>
+
+        <ItemsControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="icMain" ItemsSource="{Binding ContentControls, Mode=TwoWay}" Background="#4e4e4e">
             <ItemsControl.Template>
                 <ControlTemplate>
                     <ScrollViewer x:Name="ScrollViewer" Padding="{TemplateBinding Padding}">
@@ -50,8 +67,7 @@
             </ItemsControl.Template>
         </ItemsControl>
 
-        <ProgressBar Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" IsIndeterminate="True" Visibility="{Binding IsWorking, Mode=TwoWay, Converter={StaticResource BoolToVisbleConverter}}" />
-        
+         
         <ContentDialog Grid.Row="0" Grid.RowSpan="2" Width="600" Height="300" Grid.Column="0" x:Name="cdSettings">
             <Grid>
                 <Grid.RowDefinitions>

@@ -35,8 +35,6 @@ namespace jcW3CLOUD.PCL.ViewModels {
         }
 
         public MainModel(BaseControlImplementation controlImplementation, BasePlatformImplementation platformImplementation) {
-            IsWorking = false;
-
             _controlImplemntation = controlImplementation;
             _platformImplementation = platformImplementation;
         }
