@@ -51,23 +51,42 @@
             </Button.Flyout>
         </Button>
 
-        <Image Grid.Row="0" Grid.Column="2" Source="Assets/AnimatedLogo.png" x:Name="iLogo" Height="35">
+        <Image Grid.Row="0" Grid.Column="2" Source="Assets/AnimatedLogo.png" x:Name="iLogo" Height="35" Tapped="iLogo_Tapped">
             <Image.Projection>
                 <PlaneProjection RotationY="0" x:Name="ppLogo"  CenterOfRotationX="0.5" />
             </Image.Projection>
         </Image>
 
-        <ItemsControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="icMain" ItemsSource="{Binding ContentControls, Mode=TwoWay}" Background="#4e4e4e">
-            <ItemsControl.Template>
-                <ControlTemplate>
-                    <ScrollViewer x:Name="ScrollViewer" Padding="{TemplateBinding Padding}">
-                        <ItemsPresenter />
-                    </ScrollViewer>
-                </ControlTemplate>
-            </ItemsControl.Template>
-        </ItemsControl>
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource MainContentWindow}">
+            <ItemsControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="icMain" ItemsSource="{Binding ContentControls, Mode=TwoWay}">
+                <ItemsControl.Template>
+                    <ControlTemplate>
+                        <ScrollViewer x:Name="ScrollViewer" Padding="{TemplateBinding Padding}">
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </ItemsControl.Template>
+            </ItemsControl>
+        </Grid>
 
-         
+        <ContentDialog Grid.Row="0" Grid.RowSpan="2" Width="600" Height="300" Grid.Column="0" x:Name="cdAbout" Background="#4e4e4e"> 
+            <Grid Style="{StaticResource gridAbout}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                
+                <TextBlock Grid.Row="0" Text="about" Style="{StaticResource PopupHeader}" />
+                
+                <Image Source="/Assets/Square150x150Logo.scale-200.png" Grid.Row="1" Grid.Column="0" />
+                <TextBlock Grid.Row="2" Text="Version 1.0" />
+                
+                <Button Grid.Row="3" Style="{StaticResource PopupAction}"  HorizontalAlignment="Right" x:Name="btnOk" Click="btnOk_OnClick" Content="Ok" />
+            </Grid>
+        </ContentDialog>
+        
         <ContentDialog Grid.Row="0" Grid.RowSpan="2" Width="600" Height="300" Grid.Column="0" x:Name="cdSettings">
             <Grid>
                 <Grid.RowDefinitions>

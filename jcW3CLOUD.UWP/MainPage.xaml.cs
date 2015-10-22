@@ -56,6 +56,10 @@ namespace jcW3CLOUD.UWP {
             cdSettings.Hide();
         }
 
+        public void btnOk_OnClick(object sender, RoutedEventArgs e) {
+            cdAbout.Hide();
+        }
+
         private async void txtBxURL_SubmitSuggestion(AutoSuggestBox autoSuggestBox, AutoSuggestBoxQuerySubmittedEventArgs args) {
             sbLogo.Begin();
 
@@ -66,6 +70,10 @@ namespace jcW3CLOUD.UWP {
             var result = await viewModel.ExecuteAction();
 
             sbLogo.Stop();
+        }
+
+        private async void iLogo_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e) {
+            await cdAbout.ShowAsync();
         }
     }
 }
