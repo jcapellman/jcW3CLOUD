@@ -76,16 +76,18 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                      <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 
                 <TextBlock Grid.Row="0" Text="about" Style="{StaticResource PopupHeader}" />
                 
                 <Image Source="/Assets/Square150x150Logo.scale-200.png" Grid.Row="1" Grid.Column="0" />
-                <TextBlock Grid.Row="2" Text="Version 1.0" Style="{StaticResource tbAbout}" />
-                <HyperlinkButton Grid.Row="3" Content="https://github.com/jcapellman/jcW3CLOUD" Style="{StaticResource hlbAbout}" />
+                <TextBlock Grid.Row="2" Text="{Binding VersionString}" Style="{StaticResource tbAbout}" />
+                <TextBlock Grid.Row="3" Text="Developed by Jarred Capellman" Style="{StaticResource tbAbout}" />
+                <HyperlinkButton Grid.Row="4" Content="http://github.com/jcapellman/jcW3CLOUD" NavigateUri="http://github.com/jcapellman/jcW3CLOUD" Style="{StaticResource hlbAbout}" />
                 
-                <Button Grid.Row="4" Style="{StaticResource PopupAction}"  HorizontalAlignment="Right" x:Name="btnOk" Click="btnOk_OnClick" Content="Ok" />
+                <Button Grid.Row="5" Style="{StaticResource PopupAction}"  HorizontalAlignment="Right" x:Name="btnOk" Click="btnOk_OnClick" Content="Ok" />
             </Grid>
         </ContentDialog>
         

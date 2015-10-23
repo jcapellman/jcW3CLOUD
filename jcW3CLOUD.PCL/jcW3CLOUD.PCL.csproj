@@ -38,6 +38,7 @@
     <Compile Include="BaseControls\BaseControl.cs" />
     <Compile Include="BaseControls\BaseLabelControl.cs" />
     <Compile Include="BasePlatformImplementation.cs" />
+    <Compile Include="Common\Constants.cs" />
     <Compile Include="Enums\CONTENT_TYPES.cs" />
     <Compile Include="Enums\FILE_TYPES.cs" />
     <Compile Include="Enums\SETTINGS.cs" />

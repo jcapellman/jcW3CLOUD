@@ -13,6 +13,9 @@ using jcW3CLOUD.PCL.Wrappers;
 
 namespace jcW3CLOUD.PCL.ViewModels {
     public class MainModel : BaseModel {
+        private string _versionString;
+
+        public string VersionString {  get { return _versionString; } set { _versionString = value; OnPropertyChanged(); } }
 
         private ObservableCollection<dynamic> _contentControls;
          
@@ -37,6 +40,8 @@ namespace jcW3CLOUD.PCL.ViewModels {
         public MainModel(BaseControlImplementation controlImplementation, BasePlatformImplementation platformImplementation) {
             _controlImplemntation = controlImplementation;
             _platformImplementation = platformImplementation;
+
+            VersionString = Common.Constants.VERSION;
         }
 
         private bool _SETTING_enableHistory;
