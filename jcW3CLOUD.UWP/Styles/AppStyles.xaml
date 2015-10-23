@@ -45,4 +45,12 @@
     <Style TargetType="Grid" x:Key="gridAbout">
         <Setter Property="Background" Value="#4e4e4e" />
     </Style>
+    
+     <Style TargetType="TextBlock" x:Key="tbAbout">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+    
+    <Style TargetType="HyperlinkButton" x:Key="hlbAbout">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
 </ResourceDictionary>
