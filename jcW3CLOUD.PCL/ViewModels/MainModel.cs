@@ -136,6 +136,10 @@ namespace jcW3CLOUD.PCL.ViewModels {
                 return CONTENT_TYPES.TEXT;
             }
 
+            if (response.Content.Headers.ContentType.MediaType == "text/html") {
+                return CONTENT_TYPES.HTML;
+            }
+
             return CONTENT_TYPES.TEXT;
         }
 
