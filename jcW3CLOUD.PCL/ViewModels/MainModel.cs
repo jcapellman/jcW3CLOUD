@@ -129,18 +129,20 @@ namespace jcW3CLOUD.PCL.ViewModels {
         private CONTENT_TYPES parseResponse(HttpResponseMessage response, ref string errorString) {
             if (!response.IsSuccessStatusCode) {
                 errorString = response.StatusCode.ToString();
+
                 return CONTENT_TYPES.TEXT;
             }
 
-            if (response.Content.Headers.ContentType.MediaType == "text/plain") {
-                return CONTENT_TYPES.TEXT;
+            switch (response.Content.Headers.ContentType.MediaType) {
+                case "text/plain":
+                    return CONTENT_TYPES.TEXT;
+                case "text/html":
+                    return CONTENT_TYPES.HTML;
+                case "text/json":
+                    return CONTENT_TYPES.JSON;
+                default:
+                    return CONTENT_TYPES.TEXT;
             }
-
-            if (response.Content.Headers.ContentType.MediaType == "text/html") {
-                return CONTENT_TYPES.HTML;
-            }
-
-            return CONTENT_TYPES.TEXT;
         }
 
         public async Task<bool> ExecuteAction() {
