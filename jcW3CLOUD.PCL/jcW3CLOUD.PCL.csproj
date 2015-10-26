@@ -42,6 +42,7 @@
     <Compile Include="Enums\CONTENT_TYPES.cs" />
     <Compile Include="Enums\FILE_TYPES.cs" />
     <Compile Include="Enums\SETTINGS.cs" />
+    <Compile Include="Objects\BookmarkItem.cs" />
     <Compile Include="Objects\BrowsingHistoryItem.cs" />
     <Compile Include="Objects\CTO.cs" />
     <Compile Include="PlatformAbstractions\BaseFileSystem.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Renderers\HtmlRenderer.cs" />
     <Compile Include="Renderers\JSONRenderer.cs" />
     <Compile Include="Renderers\TextRenderer.cs" />
+    <Compile Include="Wrappers\BookmarkWrapper.cs" />
     <Compile Include="Wrappers\BrowsingHistoryWrapper.cs" />
     <Compile Include="ViewModels\BaseModel.cs" />
     <Compile Include="ViewModels\MainModel.cs" />

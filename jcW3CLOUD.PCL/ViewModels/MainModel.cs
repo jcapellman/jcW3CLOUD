@@ -30,6 +30,13 @@ namespace jcW3CLOUD.PCL.ViewModels {
         private readonly BaseControlImplementation _controlImplemntation;
         private readonly BasePlatformImplementation _platformImplementation;
 
+        private ObservableCollection<BookmarkItem> _bookmarkItems;
+
+        public ObservableCollection<BookmarkItem> BookmarkItems {
+            get { return _bookmarkItems; }
+            set { _bookmarkItems = value; OnPropertyChanged(); }
+        }
+
         private ObservableCollection<BrowsingHistoryItem> _browsingHistoryItems;
 
         public ObservableCollection<BrowsingHistoryItem> BrowsingHistoryItems {
@@ -65,6 +72,7 @@ namespace jcW3CLOUD.PCL.ViewModels {
 
         public void SaveSettings() {
             _platformImplementation.GetSettings().WriteSetting(SETTINGS.ENABLE_HISTORY, SETTING_enableHistory);
+            _platformImplementation.GetSettings().WriteSetting(SETTINGS.ENCRYPT_ALL_FILES, SETTING_encryptAllFiles);
         }
 
         public async Task<bool> LoadData() {
@@ -75,10 +83,17 @@ namespace jcW3CLOUD.PCL.ViewModels {
 
                 if (result == null || result.HasError) {
                     BrowsingHistoryItems = new ObservableCollection<BrowsingHistoryItem>();
-                    return true;
+                } else {                
+                    BrowsingHistoryItems = new ObservableCollection<BrowsingHistoryItem>(result.Value.History);
                 }
 
-                BrowsingHistoryItems = new ObservableCollection<BrowsingHistoryItem>(result.Value.History);
+                var bookmarks = await fs.GetFile<BookmarkWrapper>(FILE_TYPES.BOOKMARKS);
+
+                if (bookmarks == null || bookmarks.HasError) {
+                    BookmarkItems = new ObservableCollection<BookmarkItem>();
+                } else {
+                    BookmarkItems = new ObservableCollection<BookmarkItem>(bookmarks.Value.Bookmarks);
+                }
 
                 return true;
             } catch (Exception ex) {
@@ -108,7 +123,11 @@ namespace jcW3CLOUD.PCL.ViewModels {
         public async Task<CTO<bool>> Shutdown() {
             var fs = _platformImplementation.GetFileSystem();
 
-            return await fs.WriteFile(FILE_TYPES.BROWSING_HISTORY, new BrowsingHistoryWrapper { History = BrowsingHistoryItems.ToList()});
+            await fs.WriteFile(FILE_TYPES.BROWSING_HISTORY, new BrowsingHistoryWrapper { History = BrowsingHistoryItems.ToList()});
+
+            await fs.WriteFile(FILE_TYPES.BOOKMARKS, new BookmarkWrapper { Bookmarks = BookmarkItems.ToList() });
+
+            return new CTO<bool>(true);
         }
         
         private async Task<HttpResponseMessage> GetContent(string request) {
@@ -143,6 +162,16 @@ namespace jcW3CLOUD.PCL.ViewModels {
                 default:
                     return CONTENT_TYPES.TEXT;
             }
+        }
+
+        public async Task<CTO<bool>> AddBookmark()
+        {
+            BookmarkItems.Add(new BookmarkItem {URL = RequestAction, Description = RequestAction});
+
+            var fs = _platformImplementation.GetFileSystem();
+
+            return await fs.WriteFile(FILE_TYPES.BOOKMARKS, new BookmarkWrapper { Bookmarks = BookmarkItems.ToList() });
+
         }
 
         public async Task<bool> ExecuteAction() {

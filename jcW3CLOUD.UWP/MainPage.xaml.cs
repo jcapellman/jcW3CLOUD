@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -74,6 +75,10 @@ namespace jcW3CLOUD.UWP {
 
         private async void iLogo_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e) {
             await cdAbout.ShowAsync();
+        }
+
+        private async void mfiAddBookmark(object sender, RoutedEventArgs e) {
+            await viewModel.AddBookmark();
         }
     }
 }

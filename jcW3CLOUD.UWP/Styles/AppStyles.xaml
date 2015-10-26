@@ -30,6 +30,15 @@
         <Setter Property="Content" Value="&#xE700;" />
     </Style>
     
+     <Style TargetType="Button" x:Key="BookmarkHamburger">
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Background" Value="#1e1e1e" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+        <Setter Property="Content" Value="" />
+    </Style>
+    
     <Style TargetType="Grid" x:Key="MainWindow">
         <Setter Property="Background" Value="#1e1e1e" />
     </Style>

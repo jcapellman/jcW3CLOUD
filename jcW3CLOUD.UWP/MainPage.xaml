@@ -6,6 +6,7 @@
     xmlns:converters="using:jcW3CLOUD.UWP.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:jcW3CLOUD.UWP.Controls"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -33,13 +34,21 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Row="0" Style="{StaticResource gridURLBAR}">
             <AutoSuggestBox Style="{StaticResource URLBar}" TextChanged="TxtBxURL_TextChanged" SuggestionChosen="TxtBxURL_SuggestionChosen" QueryIcon="Find" DisplayMemberPath="URL" TextMemberPath="URL" x:Name="txtBxURL" QuerySubmitted="txtBxURL_SubmitSuggestion" />
         </Grid>
         
-        <Button Grid.Row="0" Grid.Column="1" x:Name="btnMainButton" Style="{StaticResource Hamburger}">
+        <Button Grid.Row="0" Grid.Column="1" x:Name="btnBookmarks" Style="{StaticResource BookmarkHamburger}">
+            <Button.Flyout>
+                <MenuFlyout>
+                </MenuFlyout>
+            </Button.Flyout>
+        </Button>
+        
+        <Button Grid.Row="0" Grid.Column="2" x:Name="btnMainButton" Style="{StaticResource Hamburger}">
             <Button.Flyout>
                 <MenuFlyout>
                     <MenuFlyoutItem Text="New Window" />
@@ -51,13 +60,13 @@
             </Button.Flyout>
         </Button>
 
-        <Image Grid.Row="0" Grid.Column="2" Source="Assets/AnimatedLogo.png" x:Name="iLogo" Height="35" Tapped="iLogo_Tapped">
+        <Image Grid.Row="0" Grid.Column="3" Source="Assets/AnimatedLogo.png" x:Name="iLogo" Height="35" Tapped="iLogo_Tapped">
             <Image.Projection>
                 <PlaneProjection RotationY="0" x:Name="ppLogo"  CenterOfRotationX="0.5" />
             </Image.Projection>
         </Image>
 
-        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource MainContentWindow}">
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource MainContentWindow}">
             <ItemsControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="icMain" ItemsSource="{Binding ContentControls, Mode=TwoWay}">
                 <ItemsControl.Template>
                     <ControlTemplate>

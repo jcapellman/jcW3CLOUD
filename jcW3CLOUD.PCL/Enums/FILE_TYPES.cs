@@ -1,5 +1,6 @@
 ﻿namespace jcW3CLOUD.PCL.Enums {
     public enum FILE_TYPES {
-        BROWSING_HISTORY
+        BROWSING_HISTORY,
+        BOOKMARKS
     }
 }
