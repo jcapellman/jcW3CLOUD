@@ -41,12 +41,7 @@
             <AutoSuggestBox Style="{StaticResource URLBar}" TextChanged="TxtBxURL_TextChanged" SuggestionChosen="TxtBxURL_SuggestionChosen" QueryIcon="Find" DisplayMemberPath="URL" TextMemberPath="URL" x:Name="txtBxURL" QuerySubmitted="txtBxURL_SubmitSuggestion" />
         </Grid>
         
-        <Button Grid.Row="0" Grid.Column="1" x:Name="btnBookmarks" Style="{StaticResource BookmarkHamburger}">
-            <Button.Flyout>
-                <MenuFlyout>
-                </MenuFlyout>
-            </Button.Flyout>
-        </Button>
+        <Button Grid.Row="0" Grid.Column="1" x:Name="btnBookmarks" Tapped="BtnBookmarks_OnTapped" Style="{StaticResource BookmarkHamburger}" />
         
         <Button Grid.Row="0" Grid.Column="2" x:Name="btnMainButton" Style="{StaticResource Hamburger}">
             <Button.Flyout>
@@ -78,6 +73,35 @@
             </ItemsControl>
         </Grid>
 
+        <ContentDialog Grid.Row="0" Grid.RowSpan="2" Width="300" Height="200" Grid.Column="0" x:Name="cdBookmarks" Background="#4e4e4e">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                
+                <TextBlock Grid.Row="0" Text="bookmarks" Style="{StaticResource PopupHeader}" />
+                
+                <TextBox Grid.Row="1" PlaceholderText="description" />
+                <TextBox Grid.Row="2" PlaceholderText="url" />
+                
+                <Button Grid.Row="3" Content="add bookmark" />
+                
+                <ListView Grid.Row="4" ItemsSource="{Binding BookmarkItems, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock Text="{Binding Description}" Tapped="bookmarkItemTap" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>    
+        </ContentDialog>
+        
         <ContentDialog Grid.Row="0" Grid.RowSpan="2" Width="600" Height="300" Grid.Column="0" x:Name="cdAbout" Background="#4e4e4e"> 
             <Grid Style="{StaticResource gridAbout}">
                 <Grid.RowDefinitions>

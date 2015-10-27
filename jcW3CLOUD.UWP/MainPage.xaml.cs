@@ -2,6 +2,7 @@
 using System.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using jcW3CLOUD.PCL.Objects;
 using jcW3CLOUD.PCL.ViewModels;
@@ -79,6 +80,20 @@ namespace jcW3CLOUD.UWP {
 
         private async void mfiAddBookmark(object sender, RoutedEventArgs e) {
             await viewModel.AddBookmark();
+        }
+
+        private async void bookmarkItemTap(object sender, TappedRoutedEventArgs e) {
+            cdBookmarks.Hide();
+
+            var selectedBookmark = (BookmarkItem) ((TextBlock)sender).DataContext;
+
+            viewModel.RequestAction = selectedBookmark.URL;
+
+            await viewModel.ExecuteAction();
+        }
+
+        private async void BtnBookmarks_OnTapped(object sender, TappedRoutedEventArgs e) {
+            await cdBookmarks.ShowAsync();
         }
     }
 }
