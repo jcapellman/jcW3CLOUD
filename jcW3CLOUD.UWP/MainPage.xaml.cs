@@ -35,6 +35,10 @@ namespace jcW3CLOUD.UWP {
         protected override async void OnNavigatedTo(NavigationEventArgs e) {
             var result = await viewModel.LoadData();
 
+            foreach (var item in viewModel.BookmarkItems) {
+                mfSource.Items.Add(new MenuFlyoutItem {Text = item.Description});
+            }
+
             icMain.Focus(FocusState.Programmatic);
         }
         
@@ -92,8 +96,12 @@ namespace jcW3CLOUD.UWP {
             await viewModel.ExecuteAction();
         }
 
-        private async void BtnBookmarks_OnTapped(object sender, TappedRoutedEventArgs e) {
+        private async void BtnAddBookmark_OnTapped(object sender, TappedRoutedEventArgs e) {
             await cdBookmarks.ShowAsync();
+        }
+        
+        private void BtnCancelBookmarks_OnTapped(object sender, TappedRoutedEventArgs e) {
+            cdBookmarks.Hide();
         }
     }
 }
