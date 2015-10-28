@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+
 using jcW3CLOUD.PCL.Objects;
 using jcW3CLOUD.PCL.ViewModels;
 using jcW3CLOUD.UWP.PCL;
@@ -97,6 +97,8 @@ namespace jcW3CLOUD.UWP {
         }
 
         private async void BtnAddBookmark_OnTapped(object sender, TappedRoutedEventArgs e) {
+            viewModel.AddBookmarkEnabled = false;
+
             await cdBookmarks.ShowAsync();
         }
         

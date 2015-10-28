@@ -25,6 +25,35 @@ namespace jcW3CLOUD.PCL.ViewModels {
             set { _contentControls = value; OnPropertyChanged(); }
         }
 
+        private string _addBookmarkDescription;
+
+        public string AddBookmarkDescription {
+            get { return _addBookmarkDescription; }
+            set {
+                _addBookmarkDescription = value; OnPropertyChanged();
+                AddBookmarkEnabled = !string.IsNullOrEmpty(_addBookmarkURL) &&
+                                     !string.IsNullOrEmpty(_addBookmarkDescription);
+            }
+        }
+
+        private string _addBookmarkURL;
+
+        public string AddBookmarkURL {
+            get { return _addBookmarkURL; }
+            set {
+                _addBookmarkURL = value; OnPropertyChanged();
+                AddBookmarkEnabled = !string.IsNullOrEmpty(_addBookmarkURL) &&
+                                     !string.IsNullOrEmpty(_addBookmarkDescription);
+            }
+        }
+
+        private bool _addBookmarkEnabled;
+
+        public bool AddBookmarkEnabled {
+            get { return _addBookmarkEnabled; }
+            set { _addBookmarkEnabled = value; OnPropertyChanged(); }
+        }
+
         private string _requestAction;
 
         private readonly BaseControlImplementation _controlImplemntation;
@@ -164,14 +193,12 @@ namespace jcW3CLOUD.PCL.ViewModels {
             }
         }
 
-        public async Task<CTO<bool>> AddBookmark()
-        {
-            BookmarkItems.Add(new BookmarkItem {URL = RequestAction, Description = RequestAction});
+        public async Task<CTO<bool>> AddBookmark() {
+            BookmarkItems.Add(new BookmarkItem {URL = AddBookmarkURL, Description = AddBookmarkDescription});
 
             var fs = _platformImplementation.GetFileSystem();
 
             return await fs.WriteFile(FILE_TYPES.BOOKMARKS, new BookmarkWrapper { Bookmarks = BookmarkItems.ToList() });
-
         }
 
         public async Task<bool> ExecuteAction() {
