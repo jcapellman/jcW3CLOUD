@@ -101,7 +101,7 @@
                     </Grid.ColumnDefinitions>
                     
                     <Button Grid.Column="0" HorizontalAlignment="Left" x:Name="btnCancelBookmarks" Tapped="BtnCancelBookmarks_OnTapped" Content="cancel" />
-                    <Button Grid.Column="1" HorizontalAlignment="Right" IsEnabled="{Binding AddBookmarkEnabled}" Content="add bookmark" />
+                    <Button Grid.Column="1" HorizontalAlignment="Right" IsEnabled="{Binding AddBookmarkEnabled}" Click="btnAddBoomark_OnClick" Content="add bookmark" />
                 </Grid>
             </Grid>    
         </ContentDialog>

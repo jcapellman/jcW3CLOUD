@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -45,12 +46,24 @@ namespace jcW3CLOUD.UWP {
             icMain.Focus(FocusState.Programmatic);
         }
 
+        private async void showDialog(string message) {
+            var md = new MessageDialog(message);
+
+            await md.ShowAsync();
+        }
+
         private async void mfitemBookmark_Tapped(object sender, TappedRoutedEventArgs e) {
             var menuFlyItem = (MenuFlyoutItem) sender;
 
             viewModel.RequestAction = menuFlyItem.Tag.ToString();
 
             var result = await viewModel.ExecuteAction();
+
+            if (result.Value) {
+                return;
+            }
+
+            showDialog(result.Exception); 
         }
 
         public void mfiExit_OnClick(object sender, RoutedEventArgs e) {
@@ -86,17 +99,19 @@ namespace jcW3CLOUD.UWP {
 
             var result = await viewModel.ExecuteAction();
 
+            if (result.Value) {
+                sbLogo.Stop();
+            }
+
+            showDialog(result.Exception);
+
             sbLogo.Stop();
         }
 
         private async void iLogo_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e) {
             await cdAbout.ShowAsync();
         }
-
-        private async void mfiAddBookmark(object sender, RoutedEventArgs e) {
-            await viewModel.AddBookmark();
-        }
-
+        
         private async void bookmarkItemTap(object sender, TappedRoutedEventArgs e) {
             cdBookmarks.Hide();
 
@@ -114,6 +129,12 @@ namespace jcW3CLOUD.UWP {
         }
         
         private void BtnCancelBookmarks_OnTapped(object sender, TappedRoutedEventArgs e) {
+            cdBookmarks.Hide();
+        }
+
+        private async void btnAddBoomark_OnClick(object sender, RoutedEventArgs e) {
+            await viewModel.AddBookmark();
+
             cdBookmarks.Hide();
         }
     }

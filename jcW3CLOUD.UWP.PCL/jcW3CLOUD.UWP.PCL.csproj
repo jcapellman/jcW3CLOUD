@@ -110,6 +110,7 @@
     <Compile Include="Controls\LabelControl.cs" />
     <Compile Include="PlatformImplementations\FileSystem.cs" />
     <Compile Include="PlatformImplementations\Settings.cs" />
+    <Compile Include="PlatformImplementations\UWPNetwork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UWPControls.cs" />
     <Compile Include="UWPPI.cs" />

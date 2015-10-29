@@ -46,6 +46,7 @@
     <Compile Include="Objects\BrowsingHistoryItem.cs" />
     <Compile Include="Objects\CTO.cs" />
     <Compile Include="PlatformAbstractions\BaseFileSystem.cs" />
+    <Compile Include="PlatformAbstractions\BaseNetwork.cs" />
     <Compile Include="PlatformAbstractions\BasePA.cs" />
     <Compile Include="PlatformAbstractions\BaseSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

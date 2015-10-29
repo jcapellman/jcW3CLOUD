@@ -5,5 +5,7 @@ namespace jcW3CLOUD.PCL {
         public abstract BaseFileSystem GetFileSystem();
 
         public abstract BaseSettings GetSettings();
+
+        public abstract BaseNetwork GetNetwork();
     }
 }

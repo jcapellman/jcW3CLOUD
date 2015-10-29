@@ -9,5 +9,9 @@ namespace jcW3CLOUD.UWP.PCL {
         public override BaseSettings GetSettings() {
             return new Settings();
         }
+
+        public override BaseNetwork GetNetwork() {
+            return new UWPNetwork();
+        }
     }
 }

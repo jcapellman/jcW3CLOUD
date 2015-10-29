@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 using jcW3CLOUD.PCL.Enums;
 using jcW3CLOUD.PCL.Objects;
+using jcW3CLOUD.PCL.PlatformAbstractions;
 using jcW3CLOUD.PCL.Renderers;
 using jcW3CLOUD.PCL.Wrappers;
 
 namespace jcW3CLOUD.PCL.ViewModels {
     public class MainModel : BaseModel {
+      
         private string _versionString;
 
         public string VersionString {  get { return _versionString; } set { _versionString = value; OnPropertyChanged(); } }
@@ -77,7 +79,14 @@ namespace jcW3CLOUD.PCL.ViewModels {
             _controlImplemntation = controlImplementation;
             _platformImplementation = platformImplementation;
 
+            _platformImplementation.GetNetwork().NetworkChanged += MainModel_NetworkChanged;
             VersionString = Common.Constants.VERSION;
+        }
+
+        private bool _isConnected;
+
+        private void MainModel_NetworkChanged(object sender, NetworkEventArgs e) {
+            _isConnected = e.IsConnnected;
         }
 
         private bool _SETTING_enableHistory;
@@ -201,8 +210,12 @@ namespace jcW3CLOUD.PCL.ViewModels {
             return await fs.WriteFile(FILE_TYPES.BOOKMARKS, new BookmarkWrapper { Bookmarks = BookmarkItems.ToList() });
         }
 
-        public async Task<bool> ExecuteAction() {
+        public async Task<CTO<bool>> ExecuteAction() {
             IsWorking = true;
+
+            if (!_isConnected) {
+                return new CTO<bool>(false, "Not Connected to a Network");
+            }
 
             SanitizeRequestString();
 
@@ -225,7 +238,7 @@ namespace jcW3CLOUD.PCL.ViewModels {
             IsWorking = false;
 
             if (!SETTING_enableHistory) {
-                return true;
+                return new CTO<bool>(true);
             }
 
             if (BrowsingHistoryItems.All(a => a.URL != RequestAction)) {
@@ -234,7 +247,7 @@ namespace jcW3CLOUD.PCL.ViewModels {
                 await Shutdown();
             }
             
-            return true;
+            return new CTO<bool>(true);
         }
     }
 }
