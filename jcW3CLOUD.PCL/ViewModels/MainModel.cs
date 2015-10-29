@@ -80,6 +80,9 @@ namespace jcW3CLOUD.PCL.ViewModels {
             _platformImplementation = platformImplementation;
 
             _platformImplementation.GetNetwork().NetworkChanged += MainModel_NetworkChanged;
+            
+            _platformImplementation.GetNetwork().PlatformCheck();
+
             VersionString = Common.Constants.VERSION;
         }
 

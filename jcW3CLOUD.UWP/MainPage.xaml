@@ -100,8 +100,8 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     
-                    <Button Grid.Column="0" HorizontalAlignment="Left" x:Name="btnCancelBookmarks" Tapped="BtnCancelBookmarks_OnTapped" Content="cancel" />
-                    <Button Grid.Column="1" HorizontalAlignment="Right" IsEnabled="{Binding AddBookmarkEnabled}" Click="btnAddBoomark_OnClick" Content="add bookmark" />
+                    <Button Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource PopupAction}" x:Name="btnCancelBookmarks" Tapped="BtnCancelBookmarks_OnTapped" Content="cancel" />
+                    <Button Grid.Column="1" HorizontalAlignment="Right" Style="{StaticResource PopupAction}" IsEnabled="{Binding AddBookmarkEnabled}" Click="btnAddBoomark_OnClick" Content="add bookmark" />
                 </Grid>
             </Grid>    
         </ContentDialog>
