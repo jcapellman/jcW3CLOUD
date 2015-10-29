@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -35,15 +36,20 @@ namespace jcW3CLOUD.UWP {
 
         protected override async void OnNavigatedTo(NavigationEventArgs e) {
             var result = await viewModel.LoadData();
-
+            
             foreach (var item in viewModel.BookmarkItems) {
                 var mItem = new MenuFlyoutItem {Text = item.Description, Tag = item.URL};
+
                 mItem.Tapped += mfitemBookmark_Tapped;
 
                 mfSource.Items.Add(mItem);
             }
 
             icMain.Focus(FocusState.Programmatic);
+
+            if (result.HasError) {
+                showDialog(result.Exception);
+            }
         }
 
         private async void showDialog(string message) {

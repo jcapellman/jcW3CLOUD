@@ -125,7 +125,7 @@ namespace jcW3CLOUD.PCL.ViewModels {
             _platformImplementation.GetSettings().WriteSetting(SETTINGS.DEFAULT_HOME_PAGE, SETTING_DefaultHomePage);
         }
 
-        public async Task<bool> LoadData() {
+        public async Task<CTO<bool>> LoadData() {
             try {
                 var fs = _platformImplementation.GetFileSystem();
 
@@ -145,10 +145,17 @@ namespace jcW3CLOUD.PCL.ViewModels {
                     BookmarkItems = new ObservableCollection<BookmarkItem>(bookmarks.Value.Bookmarks);
                 }
 
-                return true;
-            } catch (Exception ex) {
+                LoadSettings();
 
-                return false;
+                if (string.IsNullOrEmpty(SETTING_DefaultHomePage)) {
+                    return new CTO<bool>(true);
+                }
+
+                RequestAction = SETTING_DefaultHomePage;
+
+                return await ExecuteAction();
+            } catch (Exception ex) {
+                return new CTO<bool>(false, ex.ToString());
             }
         }
 
