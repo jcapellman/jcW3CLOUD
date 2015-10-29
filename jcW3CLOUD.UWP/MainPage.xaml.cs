@@ -36,12 +36,23 @@ namespace jcW3CLOUD.UWP {
             var result = await viewModel.LoadData();
 
             foreach (var item in viewModel.BookmarkItems) {
-                mfSource.Items.Add(new MenuFlyoutItem {Text = item.Description});
+                var mItem = new MenuFlyoutItem {Text = item.Description, Tag = item.URL};
+                mItem.Tapped += mfitemBookmark_Tapped;
+
+                mfSource.Items.Add(mItem);
             }
 
             icMain.Focus(FocusState.Programmatic);
         }
-        
+
+        private async void mfitemBookmark_Tapped(object sender, TappedRoutedEventArgs e) {
+            var menuFlyItem = (MenuFlyoutItem) sender;
+
+            viewModel.RequestAction = menuFlyItem.Tag.ToString();
+
+            var result = await viewModel.ExecuteAction();
+        }
+
         public void mfiExit_OnClick(object sender, RoutedEventArgs e) {
             Application.Current.Exit();
         }
