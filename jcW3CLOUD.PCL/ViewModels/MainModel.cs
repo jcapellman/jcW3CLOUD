@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
@@ -190,7 +189,7 @@ namespace jcW3CLOUD.PCL.ViewModels {
         private async Task<HttpResponseMessage> GetContent(string request) {
             using (var httpClient = new HttpClient()) {
                 var message = new HttpRequestMessage(HttpMethod.Get, request);
-                message.Headers.Add("User-Agent", "jcW3CLOUD");
+                message.Headers.Add("User-Agent", $"jcW3CLOUD {_versionString}");
 
                 return await httpClient.SendAsync(message);
             }
