@@ -19,6 +19,13 @@ namespace jcW3CLOUD.PCL.ViewModels {
 
         public string VersionString {  get { return _versionString; } set { _versionString = value; OnPropertyChanged(); } }
 
+        private string _settingefaultHomePage;
+
+        public string SETTING_DefaultHomePage {
+            get { return _settingefaultHomePage; }
+            set { _settingefaultHomePage = value; OnPropertyChanged(); }
+        }
+
         private ObservableCollection<dynamic> _contentControls;
          
         public ObservableCollection<dynamic> ContentControls {
@@ -109,11 +116,13 @@ namespace jcW3CLOUD.PCL.ViewModels {
         public void LoadSettings() {
             SETTING_enableHistory = _platformImplementation.GetSettings().GetSetting<bool>(SETTINGS.ENABLE_HISTORY);
             SETTING_encryptAllFiles = _platformImplementation.GetSettings().GetSetting<bool>(SETTINGS.ENCRYPT_ALL_FILES);
+            SETTING_DefaultHomePage = _platformImplementation.GetSettings().GetSetting<string>(SETTINGS.DEFAULT_HOME_PAGE);
         }
 
         public void SaveSettings() {
             _platformImplementation.GetSettings().WriteSetting(SETTINGS.ENABLE_HISTORY, SETTING_enableHistory);
             _platformImplementation.GetSettings().WriteSetting(SETTINGS.ENCRYPT_ALL_FILES, SETTING_encryptAllFiles);
+            _platformImplementation.GetSettings().WriteSetting(SETTINGS.DEFAULT_HOME_PAGE, SETTING_DefaultHomePage);
         }
 
         public async Task<bool> LoadData() {

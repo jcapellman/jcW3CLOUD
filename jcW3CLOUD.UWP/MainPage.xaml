@@ -134,6 +134,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 
@@ -147,8 +148,10 @@
                 <ToggleSwitch Grid.Row="1" Grid.Column="0" x:Name="tsEnableHistory" IsOn="{Binding SETTING_enableHistory, Mode=TwoWay}" Header="Store History" />
                 <ToggleSwitch Grid.Row="2" Grid.Column="0" x:Name="tsEncryptAllFiles" IsOn="{Binding SETTING_encryptAllFiles, Mode=TwoWay}" Header="Encrypt All Files" />
 
-                <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource PopupAction}"  HorizontalAlignment="Left" x:Name="btnCancel" Click="btnCancel_OnClick" Content="Cancel" />
-                <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource PopupAction}"  HorizontalAlignment="Right" x:Name="btnSave" Click="btnSave_OnClick" Content="Save" />
+                <TextBox Grid.Row="3" Grid.Column="0" Style="{StaticResource Setting_TextBox}" Text="{Binding SETTING_DefaultHomePage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Default Home Page" />
+
+                <Button Grid.Row="4" Grid.Column="0" Style="{StaticResource PopupAction}"  HorizontalAlignment="Left" x:Name="btnCancel" Click="btnCancel_OnClick" Content="Cancel" />
+                <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource PopupAction}"  HorizontalAlignment="Right" x:Name="btnSave" Click="btnSave_OnClick" Content="Save" />
             </Grid>
         </ContentDialog>
     </Grid>
