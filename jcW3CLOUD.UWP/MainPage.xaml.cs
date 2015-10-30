@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Windows.ApplicationModel.Core;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI.Core;
 using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -147,8 +150,26 @@ namespace jcW3CLOUD.UWP {
             cdBookmarks.Hide();
         }
 
-        private void mfiNewWindw_OnClick(object sender, RoutedEventArgs e) {
-           
+        private async void mfiNewWindw_OnClick(object sender, RoutedEventArgs e) {
+            var currentAV = ApplicationView.GetForCurrentView();
+            var newAV = CoreApplication.CreateNewView();
+            await newAV.Dispatcher.RunAsync(
+            CoreDispatcherPriority.Normal,
+            async () => {
+                var newWindow = Window.Current;
+                var newAppView = ApplicationView.GetForCurrentView();
+
+                var frame = new Frame();
+                frame.Navigate(typeof(MainPage), null);
+                newWindow.Content = frame;
+                newWindow.Activate();
+
+                await ApplicationViewSwitcher.TryShowAsStandaloneAsync(
+                    newAppView.Id,
+                    ViewSizePreference.UseMinimum,
+                    currentAV.Id,
+                    ViewSizePreference.UseMinimum);
+            });
         }
 
         private async void mfiOpenFile_OnClick(object sender, RoutedEventArgs e) {
