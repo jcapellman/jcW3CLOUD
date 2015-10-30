@@ -151,8 +151,7 @@ namespace jcW3CLOUD.UWP {
            
         }
 
-        private async void mfiOpenFile_OnClick(object sender, RoutedEventArgs e)
-        {
+        private async void mfiOpenFile_OnClick(object sender, RoutedEventArgs e) {
             var filePicker = new FileOpenPicker();
             
             filePicker.FileTypeFilter.Add(".html");
@@ -165,7 +164,7 @@ namespace jcW3CLOUD.UWP {
                 return;
             }
 
-            var content = string.Empty;
+            string content;
 
             using (var stringReader = new StreamReader(await selectedFile.OpenStreamForReadAsync())) {
                 content = await stringReader.ReadToEndAsync();
