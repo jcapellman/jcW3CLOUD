@@ -1,5 +1,8 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using System.IO;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -142,6 +145,39 @@ namespace jcW3CLOUD.UWP {
             await viewModel.AddBookmark();
 
             cdBookmarks.Hide();
+        }
+
+        private void mfiNewWindw_OnClick(object sender, RoutedEventArgs e) {
+           
+        }
+
+        private async void mfiOpenFile_OnClick(object sender, RoutedEventArgs e)
+        {
+            var filePicker = new FileOpenPicker();
+            
+            filePicker.FileTypeFilter.Add(".html");
+
+            filePicker.ViewMode = PickerViewMode.List;
+
+            var selectedFile = await filePicker.PickSingleFileAsync();
+
+            if (selectedFile == null) {
+                return;
+            }
+
+            var content = string.Empty;
+
+            using (var stringReader = new StreamReader(await selectedFile.OpenStreamForReadAsync())) {
+                content = await stringReader.ReadToEndAsync();
+            }
+
+            var result = await viewModel.ExecuteLocalRequest(selectedFile.Path, content);
+
+            if (!result.HasError) {
+                return;
+            }
+
+            showDialog(result.Exception);
         }
     }
 }

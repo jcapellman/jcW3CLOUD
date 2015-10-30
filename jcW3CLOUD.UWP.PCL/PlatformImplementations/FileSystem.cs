@@ -13,6 +13,14 @@ using jcW3CLOUD.PCL.PlatformAbstractions;
 
 namespace jcW3CLOUD.UWP.PCL.PlatformImplementations {
     public class FileSystem : BaseFileSystem {
+        public override async Task<string> GetLocalFile(string path) {
+            var folder = await StorageFolder.GetFolderFromPathAsync(path);
+
+            var file = await folder.GetFileAsync(path);
+
+            return await FileIO.ReadTextAsync(file);
+        }
+
         public override async Task<CTO<T>> GetFile<T>(FILE_TYPES fileType, bool encrypted = true) {
             var appFolder = ApplicationData.Current.LocalFolder;
 

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -185,8 +187,26 @@ namespace jcW3CLOUD.PCL.ViewModels {
 
             return new CTO<bool>(true);
         }
+
+        private async Task<HttpResponseMessage> getLocalContent(string request) {
+            var content = await _platformImplementation.GetFileSystem().GetLocalFile(request);
+
+            if (string.IsNullOrEmpty(content)) {
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+            }
+
+            var message = new HttpResponseMessage(HttpStatusCode.OK);
+
+            message.Content = new StringContent(content);
+
+            return message;
+        }
         
         private async Task<HttpResponseMessage> GetContent(string request) {
+            if (isRequestLocal) {
+                return await getLocalContent(request);
+            }
+
             using (var httpClient = new HttpClient()) {
                 var message = new HttpRequestMessage(HttpMethod.Get, request);
                 message.Headers.Add("User-Agent", $"jcW3CLOUD {_versionString}");
@@ -196,7 +216,7 @@ namespace jcW3CLOUD.PCL.ViewModels {
         }
 
         private void SanitizeRequestString() {
-            if (!RequestAction.ToUpper().StartsWith("HTTP://")) {
+            if (!isRequestLocal && !RequestAction.ToUpper().StartsWith("HTTP://")) {
                 RequestAction = "http://" + RequestAction;
             }
         }
@@ -228,10 +248,12 @@ namespace jcW3CLOUD.PCL.ViewModels {
             return await fs.WriteFile(FILE_TYPES.BOOKMARKS, new BookmarkWrapper { Bookmarks = BookmarkItems.ToList() });
         }
 
+        private bool isRequestLocal => RequestAction.ToUpper().StartsWith("C:");
+
         public async Task<CTO<bool>> ExecuteAction() {
             IsWorking = true;
 
-            if (!_isConnected) {
+            if (!_isConnected && !isRequestLocal) {
                 return new CTO<bool>(false, "Not Connected to a Network");
             }
 
@@ -265,6 +287,37 @@ namespace jcW3CLOUD.PCL.ViewModels {
                 await Shutdown();
             }
             
+            return new CTO<bool>(true);
+        }
+
+        public async Task<CTO<bool>>  ExecuteLocalRequest(string path, string content) {
+            IsWorking = true;
+
+            RequestAction = path;
+
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+
+            response.Content = new StringContent(content);
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+            
+            var errorString = string.Empty;
+
+            var renderer = GetRenderer(parseResponse(response, ref errorString));
+            
+            ContentControls = new ObservableCollection<dynamic>(renderer.RenderContent(content));
+
+            IsWorking = false;
+
+            if (!SETTING_enableHistory) {
+                return new CTO<bool>(true);
+            }
+
+            if (BrowsingHistoryItems.All(a => a.URL != RequestAction)) {
+                BrowsingHistoryItems.Add(new BrowsingHistoryItem { URL = RequestAction });
+
+                await Shutdown();
+            }
+
             return new CTO<bool>(true);
         }
     }
