@@ -19,11 +19,5 @@ namespace jcW3CLOUD.PCL.PlatformAbstractions {
         }
 
         public event EventHandler<NetworkEventArgs> NetworkChanged;
-
-        protected virtual void OnNetworkChanged(NetworkEventArgs e) {
-            var handler = NetworkChanged;
-
-            handler?.Invoke(this, e);
-        }
     }
 }
