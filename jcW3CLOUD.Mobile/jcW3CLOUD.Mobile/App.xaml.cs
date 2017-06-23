@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace jcW3CLOUD.Mobile
 {
@@ -13,7 +8,7 @@ namespace jcW3CLOUD.Mobile
 		{
 			InitializeComponent();
 
-			MainPage = new jcW3CLOUD.Mobile.MainPage();
+			MainPage = new jcW3CLOUD.Mobile.Views.MainPage();
 		}
 
 		protected override void OnStart ()
